@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import Combine
 
 final class MainPagerViewController: UIViewController {
     
@@ -104,11 +105,14 @@ extension MainPagerViewController {
         pageViewController.delegate = self
         pageViewController.dataSource = self
         
+        view.backgroundColor = .white
         if let first = pagedViewControllers.first {
             pageViewController.setViewControllers([first], direction: .forward, animated: true)
         }
     }
 }
+
+// MARK: PagerViewController Delegate
 
 extension MainPagerViewController: UIPageViewControllerDelegate, UIPageViewControllerDataSource {
     
