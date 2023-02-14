@@ -12,8 +12,7 @@ import Combine
 final class MainPagerViewController: UIViewController {
     
     private var sampleButtonTest = UIButton()
-    
-    lazy var pagedViewControllers: [UIViewController] = {
+    private lazy var pagedViewControllers: [UIViewController] = {
         let first = UIViewController()
         first.view.backgroundColor = .blue
         let second = UIViewController()
@@ -23,7 +22,7 @@ final class MainPagerViewController: UIViewController {
         return [first, second, third]
     }()
     
-    lazy var pageViewController: UIPageViewController = {
+    private lazy var pageViewController: UIPageViewController = {
         return UIPageViewController(
             transitionStyle: .scroll,
             navigationOrientation: .horizontal
@@ -76,31 +75,6 @@ extension MainPagerViewController {
         sampleButtonTest.addTarget(self, action: #selector(sampleButtonTap), for: .touchUpInside)
     }
     
-    @objc func sampleButtonTap() {
-        
-        if let randomIndex = [0, 1, 2].randomElement() {
-            guard randomIndex != currentIndex else { return }
-            
-            if currentIndex < randomIndex {
-                for i in currentIndex...randomIndex {
-                    DispatchQueue.main.async { [weak self] in
-                        guard let self = self else { return }
-                        self.pageViewController.setViewControllers([self.pagedViewControllers[i]], direction: .forward, animated: true)
-                    }
-                }
-            } else {
-                for i in stride(from: currentIndex, through: randomIndex, by: -1) {
-                    DispatchQueue.main.async { [weak self] in
-                        guard let self = self else { return }
-                        self.pageViewController.setViewControllers([self.pagedViewControllers[i]], direction: .reverse, animated: true)
-                    }
-                }
-            }
-            
-            currentIndex = randomIndex
-        }
-    }
-    
     func setupPageViewController() {
         pageViewController.delegate = self
         pageViewController.dataSource = self
@@ -108,6 +82,38 @@ extension MainPagerViewController {
         view.backgroundColor = .white
         if let first = pagedViewControllers.first {
             pageViewController.setViewControllers([first], direction: .forward, animated: true)
+        }
+    }
+}
+
+extension MainPagerViewController {
+    @objc func sampleButtonTap() {
+        let filteredCurrentIndex = [0, 1, 2].filter { $0 != self.currentIndex }
+        guard let randomIndex = filteredCurrentIndex.randomElement(),
+              randomIndex != currentIndex
+        else { return }
+        
+        if currentIndex < randomIndex {
+            (currentIndex...randomIndex).forEach { index in
+                movePageViewController(index: index, direction: .forward)
+            }
+        } else {
+            stride(from: currentIndex, through: randomIndex, by: -1).forEach { index in
+                movePageViewController(index: index, direction: .reverse)
+            }
+        }
+        
+        currentIndex = randomIndex
+    }
+    
+    func movePageViewController(index: Int, direction: UIPageViewController.NavigationDirection) {
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
+            self.pageViewController.setViewControllers(
+                [self.pagedViewControllers[index]],
+                direction: direction,
+                animated: true
+            )
         }
     }
 }
