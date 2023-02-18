@@ -30,6 +30,7 @@ final class MainPagerViewController: UIViewController {
     }()
     
     private var currentIndex: Int = 0
+    private var cancellables = Set<AnyCancellable>()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,6 +38,18 @@ final class MainPagerViewController: UIViewController {
         setupPageViewController()
         setupLayout()
         setupStyling()
+        bind()
+    }
+    
+    func bind() {
+        sampleButtonTest
+            .publisher(for: .touchUpInside)
+            .receive(on: DispatchQueue.main)
+            .compactMap { _ in }
+            .sink { [weak self] _ in
+                self?.sampleButtonTap()
+            }
+            .store(in: &cancellables)
     }
 }
 
@@ -72,7 +85,6 @@ extension MainPagerViewController {
     func setupStyling() {
         sampleButtonTest.setTitle("nice", for: .normal)
         sampleButtonTest.setTitleColor(.systemBlue, for: .normal)
-        sampleButtonTest.addTarget(self, action: #selector(sampleButtonTap), for: .touchUpInside)
     }
     
     func setupPageViewController() {
