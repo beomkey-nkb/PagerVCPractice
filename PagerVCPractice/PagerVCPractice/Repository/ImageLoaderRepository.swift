@@ -23,3 +23,9 @@ struct ImageLoaderRepository: ImageLoaderRepositoryProtocol {
         return self.remote.requestAndDecode(.randomImage)
     }
 }
+
+extension ImageLoaderRepository {
+    static func factory() -> ImageLoaderRepository {
+        return ImageLoaderRepository(remote: Remote())
+    }
+}

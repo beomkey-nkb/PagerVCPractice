@@ -19,3 +19,9 @@ final class ImageLoaderUsecase {
         return self.repository.loadRandomImage()
     }
 }
+
+extension ImageLoaderUsecase {
+    static func factory() -> ImageLoaderUsecase {
+        return ImageLoaderUsecase(repository: ImageLoaderRepository.factory())
+    }
+}

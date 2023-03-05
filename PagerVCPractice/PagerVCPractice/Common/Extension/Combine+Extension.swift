@@ -67,3 +67,10 @@ extension UIControl {
         return InteractionPublisher(control: self, event: event)
     }
 }
+
+extension AnyPublisher {
+    
+    static func empty() -> AnyPublisher<Output, Error> {
+        return Empty(completeImmediately: true).eraseToAnyPublisher()
+    }
+}
