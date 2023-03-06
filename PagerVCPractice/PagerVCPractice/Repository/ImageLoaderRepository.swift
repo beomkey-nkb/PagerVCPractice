@@ -9,7 +9,7 @@ import Foundation
 import Combine
 
 protocol ImageLoaderRepositoryProtocol {
-    func loadRandomImage() -> AnyPublisher<Data?, Error>
+    func loadRandomImage() -> AnyPublisher<Data, Error>
 }
 
 struct ImageLoaderRepository: ImageLoaderRepositoryProtocol {
@@ -19,8 +19,8 @@ struct ImageLoaderRepository: ImageLoaderRepositoryProtocol {
         self.remote = remote
     }
     
-    func loadRandomImage() -> AnyPublisher<Data?, Error> {
-        return self.remote.requestAndDecode(.randomImage)
+    func loadRandomImage() -> AnyPublisher<Data, Error> {
+        return self.remote.requestData(.randomImage)
     }
 }
 

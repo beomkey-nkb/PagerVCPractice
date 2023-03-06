@@ -13,13 +13,8 @@ final class MainPagerViewController: UIViewController {
     
     private var sampleButtonTest = UIButton()
     private lazy var pagedViewControllers: [UIViewController] = {
-        let first = UIViewController()
-        first.view.backgroundColor = .blue
-        let second = UIViewController()
-        second.view.backgroundColor = .red
-        let third = UIViewController()
-        third.view.backgroundColor = .yellow
-        return [first, second, third]
+        let test = RandomImageListViewController(nibName: nil, bundle: nil)
+        return [test]
     }()
     
     private lazy var pageViewController: UIPageViewController = {

@@ -18,6 +18,7 @@ struct Remote: RemoteProtocol { }
 
 protocol RemoteProtocol {
     func requestAndDecode<T: Decodable>(_ api: HttpAPI, parameters: [String: Any]?) -> AnyPublisher<T, Error>
+    func requestData(_ api: HttpAPI, parameters: [String: Any]?) -> AnyPublisher<Data, Error>
 }
 
 extension RemoteProtocol {
@@ -28,32 +29,46 @@ extension RemoteProtocol {
         switch api.method {
         case .GET:
             return requestGetAPI(url: url, parameters: parameters)
+                .checkResponseAndDecode(type: T.self)
         case .POST:
             return requestPostAPI(url: url, parameters: parameters)
+                .checkResponseAndDecode(type: T.self)
         }
     }
     
-    private func requestPostAPI<T: Decodable>(url: URL, parameters: [String: Any]? = nil) -> AnyPublisher<T, Error> {
+    func requestData(_ api: HttpAPI, parameters: [String: Any]? = nil) -> AnyPublisher<Data, Error> {
+        guard let url = URL(string: api.path)
+        else { return Fail<Data, Error>(error: RemoteError.notURL).eraseToAnyPublisher() }
+        
+        switch api.method {
+        case .GET:
+            return requestGetAPI(url: url, parameters: parameters)
+                .getResponseData()
+        case .POST:
+            return requestPostAPI(url: url, parameters: parameters)
+                .getResponseData()
+        }
+    }
+    
+    private func requestPostAPI(url: URL, parameters: [String: Any]? = nil) -> URLSession.DataTaskPublisher {
         let paramtersData = try? JSONSerialization.data(withJSONObject: parameters ?? [:])
         var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = "POST"
         urlRequest.httpBody = paramtersData
         
         return URLSession.shared.dataTaskPublisher(for: urlRequest)
-            .checkResponseAndDecode(type: T.self)
     }
     
-    private func requestGetAPI<T: Decodable>(url: URL, parameters: [String: Any]? = nil) -> AnyPublisher<T, Error> {
+    private func requestGetAPI(url: URL, parameters: [String: Any]? = nil) -> URLSession.DataTaskPublisher {
         var urlComponent = URLComponents(string: url.absoluteString)
         urlComponent?.queryItems = (parameters ?? [:]).map { key, value in
             return URLQueryItem(name: key, value: "\(value)")
         }
         
         guard let url = urlComponent?.url
-        else { return Fail<T, Error>(error: RemoteError.notURL).eraseToAnyPublisher() }
+        else { fatalError("[🔥fatal] not exsit url.") }
         
         return URLSession.shared.dataTaskPublisher(for: url)
-            .checkResponseAndDecode(type: T.self)
     }
 }
 
@@ -70,5 +85,25 @@ private extension Publisher where Self == URLSession.DataTaskPublisher {
         }
         .decode(type: T.self, decoder: JSONDecoder())
         .eraseToAnyPublisher()
+    }
+    
+    func getResponseData() -> AnyPublisher<Data, Error> {
+        return self.tryMap { element in
+            guard let response = element.response as? HTTPURLResponse
+            else { throw RemoteError.notExsitedResponse }
+            
+            guard response.statusCode == 200
+            else { throw RemoteError.requestError(response.statusCode) }
+            
+            return element.data
+        }
+        .compactMap { $0 }
+        .eraseToAnyPublisher()
+    }
+}
+
+private extension URLSession.DataTaskPublisher {
+    static func empty() -> AnyPublisher<Output, Error> {
+        return Empty(completeImmediately: true).eraseToAnyPublisher()
     }
 }

@@ -15,7 +15,7 @@ final class ImageLoaderUsecase {
         self.repository = repository
     }
     
-    func loadRamdomImage() -> AnyPublisher<Data?, Error> {
+    func loadRamdomImage() -> AnyPublisher<Data, Error> {
         return self.repository.loadRandomImage()
     }
 }

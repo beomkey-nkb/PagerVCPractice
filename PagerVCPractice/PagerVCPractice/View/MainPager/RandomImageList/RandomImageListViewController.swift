@@ -11,8 +11,16 @@ import Combine
 
 final class RandomImageListViewController: UIViewController {
     private var viewModel = RandomImageListViewModel()
-    private var collectionView = UICollectionView()
+    private lazy var collectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.minimumLineSpacing = 10
+        layout.scrollDirection = .vertical
+        layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        return UICollectionView(frame: .zero, collectionViewLayout: layout)
+    }()
+    
     private var dataSource: UICollectionViewDiffableDataSource<Section, RandomImageCellViewModel>!
+    private var cancellables = Set<AnyCancellable>()
     
     enum Section: String {
         case landomImageList = "RandomImageList"
@@ -24,6 +32,18 @@ final class RandomImageListViewController: UIViewController {
         setupLayout()
         setupStyling()
         setupCollectionViewDataSource()
+        bind(viewModel: viewModel)
+        viewModel.loadRandomDataSource()
+    }
+    
+    private func bind(viewModel: RandomImageListViewModel) {
+        viewModel
+            .$dataSource
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] cellViewModel in
+                self?.applyDataSource(cellViewModel)
+            }
+            .store(in: &cancellables)
     }
 }
 
@@ -83,6 +103,6 @@ extension RandomImageListViewController: UICollectionViewDelegate, UICollectionV
         let paddingX = 64
         let spacing = 32
         let cellWidth = (Int(screenWidth) - paddingX - spacing) / 3
-        return CGSize(width: cellWidth, height: 96)
+        return CGSize(width: cellWidth, height: 150)
     }
 }
