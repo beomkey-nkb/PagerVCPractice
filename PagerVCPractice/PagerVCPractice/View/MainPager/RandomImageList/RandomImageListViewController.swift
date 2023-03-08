@@ -58,8 +58,8 @@ extension RandomImageListViewController {
         view.addSubview(collectionView)
         constraints += [
             collectionView.topAnchor.constraint(equalTo: view.safeTopAnchor),
-            collectionView.leadingAnchor.constraint(equalTo: view.safeLeadingAnchor),
-            collectionView.trailingAnchor.constraint(equalTo: view.safeTrailingAnchor),
+            collectionView.leadingAnchor.constraint(equalTo: view.safeLeadingAnchor, constant: 16),
+            collectionView.trailingAnchor.constraint(equalTo: view.safeTrailingAnchor, constant: -16),
             collectionView.bottomAnchor.constraint(equalTo: view.safeBottomAnchor)
         ]
         
@@ -70,6 +70,7 @@ extension RandomImageListViewController {
         collectionView.backgroundColor = .clear
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.isScrollEnabled = true
+        collectionView.showsVerticalScrollIndicator = false
         collectionView.delegate = self
         collectionView.registerCell(cellType: RandomImageCollectionViewCell.self)
     }
@@ -85,7 +86,6 @@ extension RandomImageListViewController: UICollectionViewDelegate, UICollectionV
             cellProvider: { collectionView, indexPath, itemIdentifier in
                 let cell: RandomImageCollectionViewCell = collectionView.dequeueCell(indexPath: indexPath)
                 cell.configure(itemIdentifier)
-                cell.contentView.backgroundColor = .yellow
                 return cell
             }
         )
@@ -100,9 +100,9 @@ extension RandomImageListViewController: UICollectionViewDelegate, UICollectionV
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let screenWidth = UIScreen.main.bounds.width
-        let paddingX = 64
-        let spacing = 32
-        let cellWidth = (Int(screenWidth) - paddingX - spacing) / 3
-        return CGSize(width: cellWidth, height: 150)
+        let paddingX = 32
+        let spacing = 16
+        let cellWidth = (Int(screenWidth) - paddingX - spacing) / 3 - 2
+        return CGSize(width: cellWidth, height: 200)
     }
 }

@@ -15,6 +15,6 @@ struct RandomImageCellViewModel: Hashable {
     
     var discriptionText: String {
         let starGradeString = String(format: "%.2f", starGrade)
-        return authorName + " / " + starGradeString
+        return authorName + " / ★ " + starGradeString
     }
 }

@@ -52,10 +52,10 @@ extension RandomImageCollectionViewCell {
         
         contentView.addSubview(imageView)
         constraints += [
-            imageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5),
-            imageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 5),
-            imageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -5),
-            imageView.heightAnchor.constraint(equalToConstant: 64)
+            imageView.topAnchor.constraint(equalTo: contentView.topAnchor),
+            imageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            imageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            imageView.heightAnchor.constraint(equalToConstant: 155)
         ]
         
         contentView.addSubview(webtoonNameLabel)
@@ -67,7 +67,7 @@ extension RandomImageCollectionViewCell {
         
         contentView.addSubview(webtoonDiscriptionLabel)
         constraints += [
-            webtoonDiscriptionLabel.topAnchor.constraint(equalTo: webtoonNameLabel.bottomAnchor, constant: 5),
+            webtoonDiscriptionLabel.topAnchor.constraint(equalTo: webtoonNameLabel.bottomAnchor),
             webtoonDiscriptionLabel.leadingAnchor.constraint(equalTo: imageView.leadingAnchor),
             webtoonDiscriptionLabel.trailingAnchor.constraint(equalTo: imageView.trailingAnchor),
             webtoonDiscriptionLabel.bottomAnchor.constraint(lessThanOrEqualTo: contentView.bottomAnchor, constant: 0)
@@ -78,7 +78,14 @@ extension RandomImageCollectionViewCell {
     
     func setupStyling() {
         imageView.contentMode = .scaleToFill
+        imageView.clipsToBounds = true
+        imageView.layer.cornerRadius = 5
+        
         webtoonNameLabel.textAlignment = .left
+        webtoonNameLabel.font = .systemFont(ofSize: 15, weight: .medium)
+        
         webtoonDiscriptionLabel.textAlignment = .left
+        webtoonDiscriptionLabel.font = .systemFont(ofSize: 12, weight: .regular)
+        webtoonDiscriptionLabel.textColor = .systemGray
     }
 }

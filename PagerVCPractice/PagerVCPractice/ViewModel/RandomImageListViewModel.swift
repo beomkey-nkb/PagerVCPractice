@@ -25,7 +25,7 @@ final class RandomImageListViewModel {
                 return self.imageLoaderUsecase
                     .loadRamdomImage()
             }
-            .reduce([Data](), { $0 + [$1] })
+            .scan([Data](), { $0 + [$1] })
             .assertNoFailure()
             .map(\.mappedRandomImageCellViewModel)
             .assign(to: \.dataSource, on: self)
