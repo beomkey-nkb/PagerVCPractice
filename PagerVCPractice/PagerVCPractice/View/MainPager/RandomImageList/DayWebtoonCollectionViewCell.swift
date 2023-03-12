@@ -12,6 +12,7 @@ import Kingfisher
 final class DayWebtoonCollectionViewCell: UICollectionViewCell {
     private var imageView = UIImageView()
     private var webtoonNameLabel = UILabel()
+    private var authorNameLabel = UILabel()
     private var webtoonDiscriptionLabel = UILabel()
     
     override init(frame: CGRect) {
@@ -36,6 +37,7 @@ final class DayWebtoonCollectionViewCell: UICollectionViewCell {
     func configure(_ cellViewModel: WebtoonImageCellViewModel) {
         imageView.kf.setImage(with: URL(string: cellViewModel.imageURL))
         webtoonNameLabel.text = cellViewModel.webtoonName
+        authorNameLabel.text = cellViewModel.authorName
         webtoonDiscriptionLabel.text = cellViewModel.discriptionText
     }
 }
@@ -47,7 +49,7 @@ extension DayWebtoonCollectionViewCell {
     func setupLayout() {
         var constraints = [NSLayoutConstraint]()
         
-        [imageView, webtoonNameLabel, webtoonDiscriptionLabel].forEach { view in
+        [imageView, webtoonNameLabel, authorNameLabel, webtoonDiscriptionLabel].forEach { view in
             view.translatesAutoresizingMaskIntoConstraints = false
         }
         
@@ -66,13 +68,23 @@ extension DayWebtoonCollectionViewCell {
             webtoonNameLabel.trailingAnchor.constraint(equalTo: imageView.trailingAnchor),
         ]
         
+        contentView.addSubview(authorNameLabel)
+        constraints += [
+            authorNameLabel.topAnchor.constraint(equalTo: webtoonNameLabel.bottomAnchor),
+            authorNameLabel.leadingAnchor.constraint(equalTo: imageView.leadingAnchor),
+            authorNameLabel.bottomAnchor.constraint(lessThanOrEqualTo: contentView.bottomAnchor, constant: 0)
+        ]
+        
         contentView.addSubview(webtoonDiscriptionLabel)
         constraints += [
             webtoonDiscriptionLabel.topAnchor.constraint(equalTo: webtoonNameLabel.bottomAnchor),
-            webtoonDiscriptionLabel.leadingAnchor.constraint(equalTo: imageView.leadingAnchor),
+            webtoonDiscriptionLabel.leadingAnchor.constraint(equalTo: authorNameLabel.trailingAnchor),
             webtoonDiscriptionLabel.trailingAnchor.constraint(equalTo: imageView.trailingAnchor),
-            webtoonDiscriptionLabel.bottomAnchor.constraint(lessThanOrEqualTo: contentView.bottomAnchor, constant: 0)
+            webtoonDiscriptionLabel.bottomAnchor.constraint(equalTo: authorNameLabel.bottomAnchor)
         ]
+        
+        authorNameLabel.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
+        webtoonDiscriptionLabel.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
         
         NSLayoutConstraint.activate(constraints)
     }
@@ -85,6 +97,10 @@ extension DayWebtoonCollectionViewCell {
         webtoonNameLabel.textAlignment = .left
         webtoonNameLabel.font = .systemFont(ofSize: 15, weight: .medium)
         webtoonNameLabel.textColor = .black
+        
+        authorNameLabel.textAlignment = .left
+        authorNameLabel.font = .systemFont(ofSize: 12, weight: .regular)
+        authorNameLabel.textColor = .systemGray
         
         webtoonDiscriptionLabel.textAlignment = .left
         webtoonDiscriptionLabel.font = .systemFont(ofSize: 12, weight: .regular)

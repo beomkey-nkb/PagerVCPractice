@@ -54,7 +54,7 @@ private extension UnsplashPhoto {
             imageURL: self.urls.thumb,
             webtoonName: self.id,
             authorName: self.user.name,
-            starGrade: Double(self.likes)
+            starCount: self.likes
         )
     }
 }
