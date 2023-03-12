@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import Kingfisher
 
 final class RandomImageCollectionViewCell: UICollectionViewCell {
     private var imageView = UIImageView()
@@ -83,6 +84,7 @@ extension RandomImageCollectionViewCell {
         
         webtoonNameLabel.textAlignment = .left
         webtoonNameLabel.font = .systemFont(ofSize: 15, weight: .medium)
+        webtoonNameLabel.textColor = .black
         
         webtoonDiscriptionLabel.textAlignment = .left
         webtoonDiscriptionLabel.font = .systemFont(ofSize: 12, weight: .regular)
