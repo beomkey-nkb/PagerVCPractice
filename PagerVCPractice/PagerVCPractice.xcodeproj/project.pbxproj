@@ -13,6 +13,8 @@
 		C1A668C22984C0DA0079F7E4 /* PagerVCPracticeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A668C12984C0DA0079F7E4 /* PagerVCPracticeTests.swift */; };
 		C1A668DB2984C6C90079F7E4 /* MainPagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A668DA2984C6C90079F7E4 /* MainPagerViewController.swift */; };
 		C1ADD63B29BDA7C1008A05A2 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = C1ADD63A29BDA7C1008A05A2 /* Kingfisher */; };
+		C1ADD63E29BDA875008A05A2 /* UnsplashPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1ADD63D29BDA875008A05A2 /* UnsplashPhoto.swift */; };
+		C1ADD64129BDAF06008A05A2 /* PagenationUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1ADD64029BDAF06008A05A2 /* PagenationUsecase.swift */; };
 		C1BE4829299A61A90014AF67 /* HttpAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BE4828299A61A90014AF67 /* HttpAPI.swift */; };
 		C1BE482D299A62DE0014AF67 /* Remote.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BE482C299A62DE0014AF67 /* Remote.swift */; };
 		C1BE4830299A6F800014AF67 /* ImageLoaderUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BE482F299A6F800014AF67 /* ImageLoaderUsecase.swift */; };
@@ -46,6 +48,8 @@
 		C1A668BD2984C0DA0079F7E4 /* PagerVCPracticeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PagerVCPracticeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1A668C12984C0DA0079F7E4 /* PagerVCPracticeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagerVCPracticeTests.swift; sourceTree = "<group>"; };
 		C1A668DA2984C6C90079F7E4 /* MainPagerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPagerViewController.swift; sourceTree = "<group>"; };
+		C1ADD63D29BDA875008A05A2 /* UnsplashPhoto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnsplashPhoto.swift; sourceTree = "<group>"; };
+		C1ADD64029BDAF06008A05A2 /* PagenationUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagenationUsecase.swift; sourceTree = "<group>"; };
 		C1BE4828299A61A90014AF67 /* HttpAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpAPI.swift; sourceTree = "<group>"; };
 		C1BE482C299A62DE0014AF67 /* Remote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Remote.swift; sourceTree = "<group>"; };
 		C1BE482F299A6F800014AF67 /* ImageLoaderUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoaderUsecase.swift; sourceTree = "<group>"; };
@@ -120,6 +124,14 @@
 			path = PagerVCPracticeTests;
 			sourceTree = "<group>";
 		};
+		C1ADD63C29BDA858008A05A2 /* DataType */ = {
+			isa = PBXGroup;
+			children = (
+				C1ADD63D29BDA875008A05A2 /* UnsplashPhoto.swift */,
+			);
+			path = DataType;
+			sourceTree = "<group>";
+		};
 		C1BE4824299A60BD0014AF67 /* App */ = {
 			isa = PBXGroup;
 			children = (
@@ -149,6 +161,7 @@
 		C1BE482A299A62950014AF67 /* Repository */ = {
 			isa = PBXGroup;
 			children = (
+				C1ADD63C29BDA858008A05A2 /* DataType */,
 				C1BE482B299A62A40014AF67 /* Remote */,
 				C1BE4832299A708B0014AF67 /* ImageLoaderRepository.swift */,
 			);
@@ -168,6 +181,7 @@
 			isa = PBXGroup;
 			children = (
 				C1BE482F299A6F800014AF67 /* ImageLoaderUsecase.swift */,
+				C1ADD64029BDAF06008A05A2 /* PagenationUsecase.swift */,
 			);
 			path = Usecase;
 			sourceTree = "<group>";
@@ -324,6 +338,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				C1EFC4D929B481F900F02F79 /* UICollectionView+Extension.swift in Sources */,
+				C1ADD64129BDAF06008A05A2 /* PagenationUsecase.swift in Sources */,
+				C1ADD63E29BDA875008A05A2 /* UnsplashPhoto.swift in Sources */,
 				C1EFC4DE29B48BB400F02F79 /* RandomImageListViewModel.swift in Sources */,
 				C1EFC4DC29B4831000F02F79 /* RandomImageCollectionViewCell.swift in Sources */,
 				C1EFC4D629B47DB500F02F79 /* UIView+Extension.swift in Sources */,

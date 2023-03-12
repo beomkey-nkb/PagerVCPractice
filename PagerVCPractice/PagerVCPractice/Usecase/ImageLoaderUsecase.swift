@@ -18,6 +18,10 @@ final class ImageLoaderUsecase {
     func loadRamdomImage() -> AnyPublisher<Data, Error> {
         return self.repository.loadRandomImage()
     }
+    
+    func loadPhotos(page: Int, perPage: Int = 10) -> AnyPublisher<[UnsplashPhoto], Error> {
+        return self.repository.loadPhotos(page: page, perPage: perPage)
+    }
 }
 
 extension ImageLoaderUsecase {

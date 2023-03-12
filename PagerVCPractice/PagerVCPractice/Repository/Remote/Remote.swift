@@ -14,7 +14,11 @@ enum RemoteError: Error {
     case requestError(_ statusCode: Int)
 }
 
-struct Remote: RemoteProtocol { }
+struct Remote: RemoteProtocol {
+    var splashAccessKey: String {
+        return "xGefBiH6cEj19h9oljE5wioVY5jKjuCAgi4piJwFIwk"
+    }
+}
 
 protocol RemoteProtocol {
     func requestAndDecode<T: Decodable>(_ api: HttpAPI, parameters: [String: Any]?) -> AnyPublisher<T, Error>

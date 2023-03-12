@@ -10,6 +10,7 @@ import Combine
 
 protocol ImageLoaderRepositoryProtocol {
     func loadRandomImage() -> AnyPublisher<Data, Error>
+    func loadPhotos(page: Int, perPage: Int) -> AnyPublisher<[UnsplashPhoto], Error>
 }
 
 struct ImageLoaderRepository: ImageLoaderRepositoryProtocol {
@@ -21,6 +22,13 @@ struct ImageLoaderRepository: ImageLoaderRepositoryProtocol {
     
     func loadRandomImage() -> AnyPublisher<Data, Error> {
         return self.remote.requestData(.randomImage)
+    }
+    
+    func loadPhotos(page: Int, perPage: Int) -> AnyPublisher<[UnsplashPhoto], Error> {
+        var parameters: [String: Any] = [:]
+        parameters["page"] = page
+        parameters["per_page"] = perPage
+        return self.remote.requestAndDecode(.photos, parameters: parameters)
     }
 }
 
