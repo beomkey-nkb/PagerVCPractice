@@ -38,10 +38,15 @@ final class DayWebtoonListViewController: UIViewController {
     private func bind(viewModel: DayWebtoonListViewModel) {
         viewModel
             .$dataSource
-            .receive(on: DispatchQueue.main)
+            .receive(on: RunLoop.main)
             .sink { [weak self] cellViewModel in
                 self?.applyDataSource(cellViewModel)
             }
+            .store(in: &cancellables)
+        
+        collectionView
+            .scrollBottomHit
+            .sink(receiveValue: viewModel.nextImagePage)
             .store(in: &cancellables)
     }
 }

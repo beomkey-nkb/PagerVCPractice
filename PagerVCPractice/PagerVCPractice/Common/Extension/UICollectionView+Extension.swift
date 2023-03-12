@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import Combine
 
 extension UICollectionView {
     
@@ -38,5 +39,21 @@ extension UICollectionView {
             fatalError()
         }
         return view
+    }
+    
+    var scrollBottomHit: AnyPublisher<Void, Never> {
+        return self.publisher(for: \.contentOffset)
+            .compactMap { [weak self] offset -> Bool? in
+                guard let self = self, offset.y != 0 else { return nil }
+                return self.verticalScrollableHeight - self.frame.height <= offset.y
+            }
+            .filter { $0 }
+            .map { _ in }
+            .eraseToAnyPublisher()
+     }
+    
+    var verticalScrollableHeight: CGFloat {
+        let height = self.contentSize.height - self.frame.height + self.contentInset.top + self.contentInset.bottom
+        return max(height, 0)
     }
 }

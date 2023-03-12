@@ -55,6 +55,13 @@ final class PagenationUsecase<CursorType, DataModelType: Hashable> {
     
     private func observeTrigger() {
         
+        let loadHandler: (PageModel) -> Void = { [weak self] page in
+            self?.updateCursor(page)
+            var currentValue = self?.dataSubject.value ?? []
+            currentValue.append(contentsOf: page.items)
+            self?.dataSubject.send(currentValue.duplicateRemoved)
+        }
+        
         renewSubject
             .flatMap { [weak self] _ in
                 guard let self = self
@@ -62,10 +69,7 @@ final class PagenationUsecase<CursorType, DataModelType: Hashable> {
                 return self.loadData(direction: nil)
             }
             .assertNoFailure()
-            .sink(receiveValue: { [weak self] page in
-                self?.updateCursor(page)
-                self?.dataSubject.send(page.items)
-            })
+            .sink(receiveValue: loadHandler)
             .store(in: &cancellables)
         
         nextLoadSubject
@@ -75,10 +79,7 @@ final class PagenationUsecase<CursorType, DataModelType: Hashable> {
                 return self.loadData(direction: PageDirection.next(nextCursor))
             }
             .assertNoFailure()
-            .sink(receiveValue: { [weak self] page in
-                self?.updateCursor(page)
-                self?.dataSubject.send(page.items)
-            })
+            .sink(receiveValue: loadHandler)
             .store(in: &cancellables)
             
         prevLoadSubject
@@ -88,10 +89,7 @@ final class PagenationUsecase<CursorType, DataModelType: Hashable> {
                 return self.loadData(direction: PageDirection.prev(prevCursor))
             }
             .assertNoFailure()
-            .sink(receiveValue: { [weak self] page in
-                self?.updateCursor(page)
-                self?.dataSubject.send(page.items)
-            })
+            .sink(receiveValue: loadHandler)
             .store(in: &cancellables)
     }
 }
