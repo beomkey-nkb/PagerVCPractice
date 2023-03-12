@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 import Kingfisher
 
-final class RandomImageCollectionViewCell: UICollectionViewCell {
+final class DayWebtoonCollectionViewCell: UICollectionViewCell {
     private var imageView = UIImageView()
     private var webtoonNameLabel = UILabel()
     private var webtoonDiscriptionLabel = UILabel()
@@ -33,8 +33,8 @@ final class RandomImageCollectionViewCell: UICollectionViewCell {
         webtoonDiscriptionLabel.text = nil
     }
     
-    func configure(_ cellViewModel: RandomImageCellViewModel) {
-        imageView.image = UIImage(data: cellViewModel.imageData)
+    func configure(_ cellViewModel: WebtoonImageCellViewModel) {
+        imageView.kf.setImage(with: URL(string: cellViewModel.imageURL))
         webtoonNameLabel.text = cellViewModel.webtoonName
         webtoonDiscriptionLabel.text = cellViewModel.discriptionText
     }
@@ -42,7 +42,7 @@ final class RandomImageCollectionViewCell: UICollectionViewCell {
 
 // MARK: Presentable
 
-extension RandomImageCollectionViewCell {
+extension DayWebtoonCollectionViewCell {
     
     func setupLayout() {
         var constraints = [NSLayoutConstraint]()

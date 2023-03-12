@@ -28,6 +28,7 @@ struct ImageLoaderRepository: ImageLoaderRepositoryProtocol {
         var parameters: [String: Any] = [:]
         parameters["page"] = page
         parameters["per_page"] = perPage
+        parameters["client_id"] = self.remote.splashKey
         return self.remote.requestAndDecode(.photos, parameters: parameters)
     }
 }

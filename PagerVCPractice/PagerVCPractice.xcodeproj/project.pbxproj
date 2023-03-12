@@ -21,12 +21,12 @@
 		C1BE4833299A708B0014AF67 /* ImageLoaderRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BE4832299A708B0014AF67 /* ImageLoaderRepository.swift */; };
 		C1BE4838299A73300014AF67 /* MainPagerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BE4837299A73300014AF67 /* MainPagerViewModel.swift */; };
 		C1D2F70E29A0D5670075F95D /* Combine+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1D2F70D29A0D5670075F95D /* Combine+Extension.swift */; };
-		C1EFC4D229B47A1C00F02F79 /* RandomImageListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1EFC4D129B47A1C00F02F79 /* RandomImageListViewController.swift */; };
-		C1EFC4D429B47BA900F02F79 /* RandomImageCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1EFC4D329B47BA900F02F79 /* RandomImageCellViewModel.swift */; };
+		C1EFC4D229B47A1C00F02F79 /* DayWebtoonListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1EFC4D129B47A1C00F02F79 /* DayWebtoonListViewController.swift */; };
+		C1EFC4D429B47BA900F02F79 /* WebtoonImageCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1EFC4D329B47BA900F02F79 /* WebtoonImageCellViewModel.swift */; };
 		C1EFC4D629B47DB500F02F79 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1EFC4D529B47DB500F02F79 /* UIView+Extension.swift */; };
 		C1EFC4D929B481F900F02F79 /* UICollectionView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1EFC4D829B481F900F02F79 /* UICollectionView+Extension.swift */; };
-		C1EFC4DC29B4831000F02F79 /* RandomImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1EFC4DB29B4831000F02F79 /* RandomImageCollectionViewCell.swift */; };
-		C1EFC4DE29B48BB400F02F79 /* RandomImageListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1EFC4DD29B48BB400F02F79 /* RandomImageListViewModel.swift */; };
+		C1EFC4DC29B4831000F02F79 /* DayWebtoonCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1EFC4DB29B4831000F02F79 /* DayWebtoonCollectionViewCell.swift */; };
+		C1EFC4DE29B48BB400F02F79 /* DayWebtoonListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1EFC4DD29B48BB400F02F79 /* DayWebtoonListViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,12 +56,12 @@
 		C1BE4832299A708B0014AF67 /* ImageLoaderRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoaderRepository.swift; sourceTree = "<group>"; };
 		C1BE4837299A73300014AF67 /* MainPagerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPagerViewModel.swift; sourceTree = "<group>"; };
 		C1D2F70D29A0D5670075F95D /* Combine+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Combine+Extension.swift"; sourceTree = "<group>"; };
-		C1EFC4D129B47A1C00F02F79 /* RandomImageListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomImageListViewController.swift; sourceTree = "<group>"; };
-		C1EFC4D329B47BA900F02F79 /* RandomImageCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomImageCellViewModel.swift; sourceTree = "<group>"; };
+		C1EFC4D129B47A1C00F02F79 /* DayWebtoonListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayWebtoonListViewController.swift; sourceTree = "<group>"; };
+		C1EFC4D329B47BA900F02F79 /* WebtoonImageCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebtoonImageCellViewModel.swift; sourceTree = "<group>"; };
 		C1EFC4D529B47DB500F02F79 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		C1EFC4D829B481F900F02F79 /* UICollectionView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Extension.swift"; sourceTree = "<group>"; };
-		C1EFC4DB29B4831000F02F79 /* RandomImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomImageCollectionViewCell.swift; sourceTree = "<group>"; };
-		C1EFC4DD29B48BB400F02F79 /* RandomImageListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomImageListViewModel.swift; sourceTree = "<group>"; };
+		C1EFC4DB29B4831000F02F79 /* DayWebtoonCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayWebtoonCollectionViewCell.swift; sourceTree = "<group>"; };
+		C1EFC4DD29B48BB400F02F79 /* DayWebtoonListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayWebtoonListViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -198,7 +198,7 @@
 			isa = PBXGroup;
 			children = (
 				C1BE4837299A73300014AF67 /* MainPagerViewModel.swift */,
-				C1EFC4DD29B48BB400F02F79 /* RandomImageListViewModel.swift */,
+				C1EFC4DD29B48BB400F02F79 /* DayWebtoonListViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -224,9 +224,9 @@
 		C1EFC4D029B479D700F02F79 /* RandomImageList */ = {
 			isa = PBXGroup;
 			children = (
-				C1EFC4D129B47A1C00F02F79 /* RandomImageListViewController.swift */,
-				C1EFC4D329B47BA900F02F79 /* RandomImageCellViewModel.swift */,
-				C1EFC4DB29B4831000F02F79 /* RandomImageCollectionViewCell.swift */,
+				C1EFC4D129B47A1C00F02F79 /* DayWebtoonListViewController.swift */,
+				C1EFC4D329B47BA900F02F79 /* WebtoonImageCellViewModel.swift */,
+				C1EFC4DB29B4831000F02F79 /* DayWebtoonCollectionViewCell.swift */,
 			);
 			path = RandomImageList;
 			sourceTree = "<group>";
@@ -340,13 +340,13 @@
 				C1EFC4D929B481F900F02F79 /* UICollectionView+Extension.swift in Sources */,
 				C1ADD64129BDAF06008A05A2 /* PagenationUsecase.swift in Sources */,
 				C1ADD63E29BDA875008A05A2 /* UnsplashPhoto.swift in Sources */,
-				C1EFC4DE29B48BB400F02F79 /* RandomImageListViewModel.swift in Sources */,
-				C1EFC4DC29B4831000F02F79 /* RandomImageCollectionViewCell.swift in Sources */,
+				C1EFC4DE29B48BB400F02F79 /* DayWebtoonListViewModel.swift in Sources */,
+				C1EFC4DC29B4831000F02F79 /* DayWebtoonCollectionViewCell.swift in Sources */,
 				C1EFC4D629B47DB500F02F79 /* UIView+Extension.swift in Sources */,
 				C1BE4833299A708B0014AF67 /* ImageLoaderRepository.swift in Sources */,
 				C1BE4829299A61A90014AF67 /* HttpAPI.swift in Sources */,
-				C1EFC4D229B47A1C00F02F79 /* RandomImageListViewController.swift in Sources */,
-				C1EFC4D429B47BA900F02F79 /* RandomImageCellViewModel.swift in Sources */,
+				C1EFC4D229B47A1C00F02F79 /* DayWebtoonListViewController.swift in Sources */,
+				C1EFC4D429B47BA900F02F79 /* WebtoonImageCellViewModel.swift in Sources */,
 				C1BE482D299A62DE0014AF67 /* Remote.swift in Sources */,
 				C1A668AB2984C0D90079F7E4 /* AppDelegate.swift in Sources */,
 				C1BE4830299A6F800014AF67 /* ImageLoaderUsecase.swift in Sources */,

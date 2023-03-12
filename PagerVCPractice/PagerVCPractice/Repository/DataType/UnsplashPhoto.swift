@@ -10,7 +10,7 @@ import Foundation
 struct UnsplashPhoto: Decodable, Hashable {
     let id: String
     let urls: UnsplashURL
-    let description: String?
+    let user: UnsplashUser
     let likes: Int
     
     static func == (lhs: UnsplashPhoto, rhs: UnsplashPhoto) -> Bool {
@@ -20,6 +20,10 @@ struct UnsplashPhoto: Decodable, Hashable {
     func hash(into hasher: inout Hasher) {
         hasher.combine(id)
     }
+}
+
+struct UnsplashUser: Decodable {
+    let name: String
 }
 
 struct UnsplashURL: Decodable {

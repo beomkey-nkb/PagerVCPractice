@@ -7,8 +7,8 @@
 
 import Foundation
 
-struct RandomImageCellViewModel: Hashable {
-    let imageData: Data
+struct WebtoonImageCellViewModel: Hashable {
+    let imageURL: String
     let webtoonName: String
     let authorName: String
     let starGrade: Double

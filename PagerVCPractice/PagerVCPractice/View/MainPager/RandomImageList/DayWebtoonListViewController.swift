@@ -9,8 +9,8 @@ import Foundation
 import UIKit
 import Combine
 
-final class RandomImageListViewController: UIViewController {
-    private var viewModel = RandomImageListViewModel()
+final class DayWebtoonListViewController: UIViewController {
+    private var viewModel = DayWebtoonListViewModel()
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.minimumLineSpacing = 10
@@ -19,7 +19,7 @@ final class RandomImageListViewController: UIViewController {
         return UICollectionView(frame: .zero, collectionViewLayout: layout)
     }()
     
-    private var dataSource: UICollectionViewDiffableDataSource<Section, RandomImageCellViewModel>!
+    private var dataSource: UICollectionViewDiffableDataSource<Section, WebtoonImageCellViewModel>!
     private var cancellables = Set<AnyCancellable>()
     
     enum Section: String {
@@ -33,10 +33,9 @@ final class RandomImageListViewController: UIViewController {
         setupStyling()
         setupCollectionViewDataSource()
         bind(viewModel: viewModel)
-        viewModel.loadRandomDataSource()
     }
     
-    private func bind(viewModel: RandomImageListViewModel) {
+    private func bind(viewModel: DayWebtoonListViewModel) {
         viewModel
             .$dataSource
             .receive(on: DispatchQueue.main)
@@ -49,7 +48,7 @@ final class RandomImageListViewController: UIViewController {
 
 // MARK: Presentable
 
-extension RandomImageListViewController {
+extension DayWebtoonListViewController {
     
     func setupLayout() {
         var constraints = [NSLayoutConstraint]()
@@ -72,27 +71,27 @@ extension RandomImageListViewController {
         collectionView.isScrollEnabled = true
         collectionView.showsVerticalScrollIndicator = false
         collectionView.delegate = self
-        collectionView.registerCell(cellType: RandomImageCollectionViewCell.self)
+        collectionView.registerCell(cellType: DayWebtoonCollectionViewCell.self)
     }
 }
 
 // MARK: CollectionView setup
 
-extension RandomImageListViewController: UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+extension DayWebtoonListViewController: UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     func setupCollectionViewDataSource() {
-        dataSource = UICollectionViewDiffableDataSource<Section, RandomImageCellViewModel>.init(
+        dataSource = UICollectionViewDiffableDataSource<Section, WebtoonImageCellViewModel>.init(
             collectionView: collectionView,
             cellProvider: { collectionView, indexPath, itemIdentifier in
-                let cell: RandomImageCollectionViewCell = collectionView.dequeueCell(indexPath: indexPath)
+                let cell: DayWebtoonCollectionViewCell = collectionView.dequeueCell(indexPath: indexPath)
                 cell.configure(itemIdentifier)
                 return cell
             }
         )
     }
     
-    func applyDataSource(_ cellViewModels: [RandomImageCellViewModel]) {
-        var snapshot = NSDiffableDataSourceSnapshot<Section, RandomImageCellViewModel>()
+    func applyDataSource(_ cellViewModels: [WebtoonImageCellViewModel]) {
+        var snapshot = NSDiffableDataSourceSnapshot<Section, WebtoonImageCellViewModel>()
         snapshot.appendSections([.landomImageList])
         snapshot.appendItems(cellViewModels, toSection: .landomImageList)
         dataSource.apply(snapshot, animatingDifferences: false)

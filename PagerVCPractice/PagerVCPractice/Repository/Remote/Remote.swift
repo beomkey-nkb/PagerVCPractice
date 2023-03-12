@@ -14,11 +14,7 @@ enum RemoteError: Error {
     case requestError(_ statusCode: Int)
 }
 
-struct Remote: RemoteProtocol {
-    var splashAccessKey: String {
-        return "xGefBiH6cEj19h9oljE5wioVY5jKjuCAgi4piJwFIwk"
-    }
-}
+struct Remote: RemoteProtocol { }
 
 protocol RemoteProtocol {
     func requestAndDecode<T: Decodable>(_ api: HttpAPI, parameters: [String: Any]?) -> AnyPublisher<T, Error>
@@ -26,6 +22,11 @@ protocol RemoteProtocol {
 }
 
 extension RemoteProtocol {
+    
+    var splashKey: String {
+        return "xGefBiH6cEj19h9oljE5wioVY5jKjuCAgi4piJwFIwk"
+    }
+    
     func requestAndDecode<T: Decodable>(_ api: HttpAPI, parameters: [String: Any]? = nil) -> AnyPublisher<T, Error> {
         guard let url = URL(string: api.path)
         else { return Fail<T, Error>(error: RemoteError.notURL).eraseToAnyPublisher() }

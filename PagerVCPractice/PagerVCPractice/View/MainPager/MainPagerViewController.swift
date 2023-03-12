@@ -13,7 +13,7 @@ final class MainPagerViewController: UIViewController {
     
     private var sampleButtonTest = UIButton()
     private lazy var pagedViewControllers: [UIViewController] = {
-        let test = RandomImageListViewController(nibName: nil, bundle: nil)
+        let test = DayWebtoonListViewController(nibName: nil, bundle: nil)
         return [test]
     }()
     
