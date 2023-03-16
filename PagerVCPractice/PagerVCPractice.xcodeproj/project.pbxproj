@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C1472D7329C32A5E00F08266 /* Gesture+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1472D7229C32A5E00F08266 /* Gesture+Extension.swift */; };
 		C1A668AB2984C0D90079F7E4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A668AA2984C0D90079F7E4 /* AppDelegate.swift */; };
 		C1A668B42984C0DA0079F7E4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C1A668B32984C0DA0079F7E4 /* Assets.xcassets */; };
 		C1A668B72984C0DA0079F7E4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C1A668B52984C0DA0079F7E4 /* LaunchScreen.storyboard */; };
@@ -41,6 +42,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C1472D7229C32A5E00F08266 /* Gesture+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Gesture+Extension.swift"; sourceTree = "<group>"; };
 		C1A668A72984C0D90079F7E4 /* PagerVCPractice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PagerVCPractice.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1A668AA2984C0D90079F7E4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C1A668B32984C0DA0079F7E4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -220,6 +222,7 @@
 				C1EFC4D529B47DB500F02F79 /* UIView+Extension.swift */,
 				C1EFC4D829B481F900F02F79 /* UICollectionView+Extension.swift */,
 				C1ADD64629BDD2CB008A05A2 /* Array+Extension.swift */,
+				C1472D7229C32A5E00F08266 /* Gesture+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -343,6 +346,7 @@
 				C1EFC4D929B481F900F02F79 /* UICollectionView+Extension.swift in Sources */,
 				C1ADD64129BDAF06008A05A2 /* PagenationUsecase.swift in Sources */,
 				C1ADD63E29BDA875008A05A2 /* UnsplashPhoto.swift in Sources */,
+				C1472D7329C32A5E00F08266 /* Gesture+Extension.swift in Sources */,
 				C1EFC4DE29B48BB400F02F79 /* DayWebtoonListViewModel.swift in Sources */,
 				C1EFC4DC29B4831000F02F79 /* DayWebtoonCollectionViewCell.swift in Sources */,
 				C1EFC4D629B47DB500F02F79 /* UIView+Extension.swift in Sources */,

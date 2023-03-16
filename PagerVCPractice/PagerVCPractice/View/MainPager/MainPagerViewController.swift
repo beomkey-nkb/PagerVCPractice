@@ -10,8 +10,6 @@ import UIKit
 import Combine
 
 final class MainPagerViewController: UIViewController {
-    
-    private var sampleButtonTest = UIButton()
     private lazy var pagedViewControllers: [UIViewController] = {
         let test = DayWebtoonListViewController(nibName: nil, bundle: nil)
         return [test]
@@ -58,8 +56,7 @@ extension MainPagerViewController {
     }
     
     func setupStyling() {
-        sampleButtonTest.setTitle("nice", for: .normal)
-        sampleButtonTest.setTitleColor(.systemBlue, for: .normal)
+        
     }
     
     func setupPageViewController() {
