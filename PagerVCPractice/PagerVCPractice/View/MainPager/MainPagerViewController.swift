@@ -22,6 +22,9 @@ final class MainPagerViewController: UIViewController {
         )
     }()
     
+    private var webtoonAdView = UIView()
+    private var webtoonDayView = UIView()
+    
     private var currentIndex: Int = 0
     private var cancellables = Set<AnyCancellable>()
     
@@ -40,12 +43,32 @@ extension MainPagerViewController {
     func setupLayout() {
         var constraints = [NSLayoutConstraint]()
         
+        [webtoonAdView, webtoonDayView, pageViewController.view].forEach { view in
+            view?.translatesAutoresizingMaskIntoConstraints = false
+        }
+        
+        view.addSubview(webtoonAdView)
+        let topSafeAreaInset = view.safeAreaInsets.top
+        constraints += [
+            webtoonAdView.topAnchor.constraint(equalTo: view.topAnchor),
+            webtoonAdView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            webtoonAdView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            webtoonAdView.heightAnchor.constraint(equalToConstant: topSafeAreaInset + 250)
+        ]
+        
+        view.addSubview(webtoonDayView)
+        constraints += [
+            webtoonDayView.topAnchor.constraint(equalTo: webtoonAdView.bottomAnchor),
+            webtoonDayView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            webtoonDayView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            webtoonDayView.heightAnchor.constraint(equalToConstant: 50)
+        ]
+        
         addChild(pageViewController)
-        pageViewController.view.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(pageViewController.view)
 
         constraints += [
-            pageViewController.view.topAnchor.constraint(equalTo: view.safeTopAnchor),
+            pageViewController.view.topAnchor.constraint(equalTo: webtoonDayView.bottomAnchor),
             pageViewController.view.leadingAnchor.constraint(equalTo: view.safeLeadingAnchor),
             pageViewController.view.trailingAnchor.constraint(equalTo: view.safeTrailingAnchor),
             pageViewController.view.bottomAnchor.constraint(equalTo: view.safeBottomAnchor)
@@ -56,7 +79,8 @@ extension MainPagerViewController {
     }
     
     func setupStyling() {
-        
+        webtoonAdView.backgroundColor = .gray
+        webtoonDayView.backgroundColor = .darkGray
     }
     
     func setupPageViewController() {

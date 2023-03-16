@@ -91,7 +91,7 @@ class GestureSubscription<S: Subscriber>: Subscription where S.Input == GestureT
 
 extension UIView {
     
-    func gesture(_ gestureType: GestureType) -> GesturePublisher {
+    func gesturePublisher(_ gestureType: GestureType) -> GesturePublisher {
         return GesturePublisher.init(view: self, gestureType: gestureType)
     }
 }

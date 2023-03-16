@@ -108,7 +108,7 @@ private extension DayWebtoonListViewController {
         )
         collectionView.backgroundColor = .clear
         collectionView.showsHorizontalScrollIndicator = false
-        collectionView.isScrollEnabled = true
+        collectionView.isScrollEnabled = false
         collectionView.showsVerticalScrollIndicator = false
         collectionView.delegate = self
         collectionView.registerCell(cellType: DayWebtoonCollectionViewCell.self)
@@ -153,6 +153,7 @@ private extension DayWebtoonListViewController {
             count: 3
         )
         let section = NSCollectionLayoutSection(group: group)
+        section.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 0, bottom: 0, trailing: 0)
         return section
     }
 }
