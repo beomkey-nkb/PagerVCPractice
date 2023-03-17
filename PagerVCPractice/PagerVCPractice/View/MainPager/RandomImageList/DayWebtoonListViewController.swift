@@ -14,7 +14,7 @@ enum DayWebtoonListSection: Int {
 }
 
 final class DayWebtoonListViewController: UIViewController {
-    private var viewModel = DayWebtoonListViewModel()
+    private var viewModel: DayWebtoonListViewModel
     
     private var collectionView: UICollectionView! = nil
     private var dataSource: UICollectionViewDiffableDataSource<Section, WebtoonImageCellViewModel>!
@@ -22,6 +22,15 @@ final class DayWebtoonListViewController: UIViewController {
     
     enum Section: String {
         case landomImageList = "RandomImageList"
+    }
+    
+    init(viewModel: DayWebtoonListViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     override func viewDidLoad() {
@@ -46,6 +55,21 @@ final class DayWebtoonListViewController: UIViewController {
         collectionView
             .scrollBottomHit
             .sink(receiveValue: viewModel.nextImagePage)
+            .store(in: &cancellables)
+        
+        viewModel
+            .isScrollableCollectionView
+            .assign(to: \.isScrollEnabled, on: collectionView)
+            .store(in: &cancellables)
+        
+        collectionView
+            .publisher(for: \.contentOffset)
+            .filter { $0.y <= 0 }
+            .map { _ in }
+            .sink(receiveValue: { [weak self] _ in
+                self?.collectionView.isScrollEnabled = false
+                viewModel.passToParentIsScrollable(false)
+            })
             .store(in: &cancellables)
     }
 }

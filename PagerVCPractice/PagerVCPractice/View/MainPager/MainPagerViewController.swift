@@ -12,7 +12,9 @@ import Combine
 final class MainPagerViewController: UIViewController {
     private let viewModel = MainPagerViewModel()
     private lazy var pagedViewControllers: [UIViewController] = {
-        let test = DayWebtoonListViewController(nibName: nil, bundle: nil)
+        let listViewModel = DayWebtoonListViewModel(parentActionPublisher: viewModel.parentActionPublisher)
+        listViewModel.listener = viewModel
+        let test = DayWebtoonListViewController(viewModel: listViewModel)
         return [test]
     }()
     
