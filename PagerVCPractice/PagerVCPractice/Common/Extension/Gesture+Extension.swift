@@ -67,7 +67,7 @@ class GestureSubscription<S: Subscriber>: Subscription where S.Input == GestureT
         self.subscriber = subscriber
         self.view = view
         self.gestureType = gestureType
-        
+        self.configureGesture(gestureType)
     }
     
     func request(_ demand: Subscribers.Demand) {
@@ -81,6 +81,7 @@ class GestureSubscription<S: Subscriber>: Subscription where S.Input == GestureT
     private func configureGesture(_ gestureType: GestureType) {
         let gesture = gestureType.get()
         gesture.addTarget(self, action: #selector(gestureHandler))
+        view.addGestureRecognizer(gesture)
     }
     
     @objc
@@ -93,5 +94,49 @@ extension UIView {
     
     func gesturePublisher(_ gestureType: GestureType) -> GesturePublisher {
         return GesturePublisher.init(view: self, gestureType: gestureType)
+    }
+}
+
+extension GesturePublisher {
+    var event: AnyPublisher<(UIGestureRecognizer.State, CGPoint), Never> {
+        return self.map { $0.get() }
+            .compactMap { gesture -> (UIGestureRecognizer.State, CGPoint)? in
+                let state = gesture.state
+                let point = gesture.location(in: gesture.view)
+                return (state, point)
+            }
+            .eraseToAnyPublisher()
+    }
+    
+    var onlyVerticalPanGesture: AnyPublisher<UIGestureRecognizer, Never> {
+        return self.map { $0.get() }
+        .filter { gesture in
+            guard let panGesture = gesture as? UIPanGestureRecognizer else { return false }
+            let velocity = panGesture.velocity(in: gesture.view)
+            return abs(velocity.x) < abs(velocity.y)
+        }
+        .eraseToAnyPublisher()
+    }
+    
+    var onlyHorizontalPanGesture: AnyPublisher<UIGestureRecognizer, Never> {
+        return self.map { $0.get() }
+        .filter { gesture in
+            guard let panGesture = gesture as? UIPanGestureRecognizer else { return false }
+            let velocity = panGesture.velocity(in: gesture.view)
+            return abs(velocity.x) > abs(velocity.y)
+        }
+        .eraseToAnyPublisher()
+    }
+}
+
+extension Publisher where Output == UIGestureRecognizer, Failure == Never {
+    var event: AnyPublisher<(UIGestureRecognizer.State, CGPoint), Never> {
+        return self
+            .compactMap { gesture -> (UIGestureRecognizer.State, CGPoint)? in
+                let state = gesture.state
+                let point = gesture.location(in: gesture.view)
+                return (state, point)
+            }
+            .eraseToAnyPublisher()
     }
 }
