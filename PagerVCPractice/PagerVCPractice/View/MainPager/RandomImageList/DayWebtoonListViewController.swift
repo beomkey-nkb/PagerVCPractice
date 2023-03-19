@@ -57,20 +57,20 @@ final class DayWebtoonListViewController: UIViewController {
             .sink(receiveValue: viewModel.nextImagePage)
             .store(in: &cancellables)
         
-        viewModel
-            .isScrollableCollectionView
-            .assign(to: \.isScrollEnabled, on: collectionView)
-            .store(in: &cancellables)
-        
-        collectionView
-            .publisher(for: \.contentOffset)
-            .filter { $0.y <= 0 }
-            .map { _ in }
-            .sink(receiveValue: { [weak self] _ in
-                self?.collectionView.isScrollEnabled = false
-                viewModel.passToParentIsScrollable(false)
-            })
-            .store(in: &cancellables)
+//        viewModel
+//            .isScrollableCollectionView
+//            .assign(to: \.isScrollEnabled, on: collectionView)
+//            .store(in: &cancellables)
+//
+//        collectionView
+//            .publisher(for: \.contentOffset)
+//            .filter { $0.y <= 0 }
+//            .map { _ in }
+//            .sink(receiveValue: { [weak self] _ in
+//                self?.collectionView.isScrollEnabled = false
+//                viewModel.passToParentIsScrollable(false)
+//            })
+//            .store(in: &cancellables)
     }
 }
 
@@ -132,7 +132,7 @@ private extension DayWebtoonListViewController {
         )
         collectionView.backgroundColor = .clear
         collectionView.showsHorizontalScrollIndicator = false
-        collectionView.isScrollEnabled = false
+        collectionView.isScrollEnabled = true
         collectionView.showsVerticalScrollIndicator = false
         collectionView.delegate = self
         collectionView.registerCell(cellType: DayWebtoonCollectionViewCell.self)

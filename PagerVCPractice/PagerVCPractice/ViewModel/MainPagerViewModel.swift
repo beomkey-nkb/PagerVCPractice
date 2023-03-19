@@ -33,12 +33,3 @@ final class MainPagerViewModel {
         isScrollableCollectionViewSubject.send(isScrollable)
     }
 }
-
-// MARK: DayWebtoonList Listener
-
-extension MainPagerViewModel: DayWebtoonListener {
-    
-    func setupIsScrollableCollectionView(_ isScrollable: Bool) {
-        isScrollableCollectionViewSubject.send(isScrollable)
-    }
-}

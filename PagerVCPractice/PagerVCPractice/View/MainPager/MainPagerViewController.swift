@@ -12,8 +12,7 @@ import Combine
 final class MainPagerViewController: UIViewController {
     private let viewModel = MainPagerViewModel()
     private lazy var pagedViewControllers: [UIViewController] = {
-        let listViewModel = DayWebtoonListViewModel(parentActionPublisher: viewModel.parentActionPublisher)
-        listViewModel.listener = viewModel
+        let listViewModel = DayWebtoonListViewModel()
         let test = DayWebtoonListViewController(viewModel: listViewModel)
         return [test]
     }()
@@ -40,58 +39,6 @@ final class MainPagerViewController: UIViewController {
         setupPageViewController()
         setupLayout()
         setupStyling()
-        bindPanGestureEvent()
-    }
-}
-
-// MARK: Gesture Animation
-
-extension MainPagerViewController {
-    func bindPanGestureEvent() {
-        view.gesturePublisher(.pan())
-            .onlyVerticalPanGesture
-            .event
-            .sink(receiveValue: { [weak self] state, point in
-                self?.handleVerticalScrollGesture(state: state, point: point)
-            })
-            .store(in: &cancellables)
-    }
-    
-    func handleVerticalScrollGesture(state: UIGestureRecognizer.State, point: CGPoint) {
-        switch state {
-        case .began:
-            beganPoint = point
-            
-        case .changed:
-            guard let beganPoint = beganPoint,
-                  viewModel.isScrollableCollectionView == false
-            else { return }
-            
-            let topInset = view.safeAreaInsets.top
-            let currentConstant = (adViewTopConstraint?.constant ?? 0)
-            let willMove = min(max(currentConstant + point.y - beganPoint.y, (-206 + topInset)), 0)
-            viewModel.setupIsScrollableChildCollectionView(willMove == (-206 + topInset))
-            adViewTopConstraint?.constant = willMove
-            
-            
-        case .ended:
-            guard let _ = beganPoint,
-                  viewModel.isScrollableCollectionView == false
-            else { return }
-            
-            let currentConstant = (adViewTopConstraint?.constant ?? 0)
-            let topInset = view.safeAreaInsets.top
-            guard currentConstant >= topInset else { return }
-            UIView.animate(withDuration: 0.3) {
-                self.adViewTopConstraint?.constant = (-206 + topInset)
-            } completion: { _ in
-                self.viewModel.setupIsScrollableChildCollectionView(true)
-                self.beganPoint = nil
-            }
-            
-        default:
-            break
-        }
     }
 }
 
