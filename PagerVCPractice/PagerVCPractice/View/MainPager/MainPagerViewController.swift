@@ -36,9 +36,17 @@ final class MainPagerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupPageViewController()
-        setupLayout()
-        setupStyling()
+        publisher(for: \.view?.safeAreaInsets)
+            .compactMap { $0?.top }
+            .filter { $0 != 0 }
+            .first()
+            .sink(receiveValue: { [weak self] _ in
+                guard let self = self else { return }
+                self.setupPageViewController()
+                self.setupLayout()
+                self.setupStyling()
+            })
+            .store(in: &cancellables)
     }
 }
 
@@ -48,19 +56,11 @@ extension MainPagerViewController {
     func setupLayout() {
         var constraints = [NSLayoutConstraint]()
         
-        [navigationView, webtoonAdView, webtoonDayView, pageViewController.view].forEach { view in
+        [webtoonAdView, webtoonDayView, pageViewController.view].forEach { view in
             view?.translatesAutoresizingMaskIntoConstraints = false
         }
         
         let topSafeAreaInset = view.safeAreaInsets.top
-        view.addSubview(navigationView)
-        constraints += [
-            navigationView.topAnchor.constraint(equalTo: view.topAnchor, constant: -(topSafeAreaInset + 44)),
-            navigationView.leadingAnchor.constraint(equalTo: view.safeLeadingAnchor),
-            navigationView.trailingAnchor.constraint(equalTo: view.safeTrailingAnchor),
-            navigationView.heightAnchor.constraint(equalToConstant: topSafeAreaInset + 44)
-        ]
-        
         view.addSubview(webtoonAdView)
         adViewTopConstraint = webtoonAdView.topAnchor.constraint(equalTo: view.topAnchor)
         constraints += [
@@ -82,13 +82,15 @@ extension MainPagerViewController {
         view.addSubview(pageViewController.view)
 
         constraints += [
-            pageViewController.view.topAnchor.constraint(equalTo: webtoonDayView.bottomAnchor),
+            pageViewController.view.topAnchor.constraint(equalTo: view.safeTopAnchor),
             pageViewController.view.leadingAnchor.constraint(equalTo: view.safeLeadingAnchor),
             pageViewController.view.trailingAnchor.constraint(equalTo: view.safeTrailingAnchor),
             pageViewController.view.bottomAnchor.constraint(equalTo: view.safeBottomAnchor)
         ]
         
         NSLayoutConstraint.activate(constraints)
+        view.bringSubviewToFront(webtoonAdView)
+        view.bringSubviewToFront(webtoonDayView)
         pageViewController.didMove(toParent: self)
     }
     

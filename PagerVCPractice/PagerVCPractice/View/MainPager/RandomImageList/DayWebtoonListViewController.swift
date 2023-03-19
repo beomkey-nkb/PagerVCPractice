@@ -56,21 +56,6 @@ final class DayWebtoonListViewController: UIViewController {
             .scrollBottomHit
             .sink(receiveValue: viewModel.nextImagePage)
             .store(in: &cancellables)
-        
-//        viewModel
-//            .isScrollableCollectionView
-//            .assign(to: \.isScrollEnabled, on: collectionView)
-//            .store(in: &cancellables)
-//
-//        collectionView
-//            .publisher(for: \.contentOffset)
-//            .filter { $0.y <= 0 }
-//            .map { _ in }
-//            .sink(receiveValue: { [weak self] _ in
-//                self?.collectionView.isScrollEnabled = false
-//                viewModel.passToParentIsScrollable(false)
-//            })
-//            .store(in: &cancellables)
     }
 }
 
@@ -100,7 +85,7 @@ extension DayWebtoonListViewController {
 
 // MARK: CollectionView dataSource
 
-extension DayWebtoonListViewController: UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+extension DayWebtoonListViewController: UICollectionViewDelegate {
     
     func setupCollectionViewDataSource() {
         dataSource = UICollectionViewDiffableDataSource<Section, WebtoonImageCellViewModel>.init(
@@ -136,6 +121,7 @@ private extension DayWebtoonListViewController {
         collectionView.showsVerticalScrollIndicator = false
         collectionView.delegate = self
         collectionView.registerCell(cellType: DayWebtoonCollectionViewCell.self)
+        collectionView.contentInset = UIEdgeInsets(top: 300, left: 0, bottom: 0, right: 0)
     }
     
     func createCollectionViewCompositionalLayout() -> UICollectionViewLayout {
