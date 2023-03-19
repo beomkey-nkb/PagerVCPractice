@@ -104,6 +104,41 @@ extension DayWebtoonListViewController: UICollectionViewDelegate {
         snapshot.appendItems(cellViewModels, toSection: .landomImageList)
         dataSource.apply(snapshot, animatingDifferences: false)
     }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        guard scrollView.isDragging || scrollView.isDecelerating else { return }
+        // viewModel.changeTopOffset - scrollView.contentOffset.y 전달
+
+        if scrollView.contentOffset.y >= 0 {
+            guard collectionView.contentInset.top != 0 else { return }
+            collectionView.contentInset = UIEdgeInsets(top: 50, left: 0, bottom: 0, right: 0)
+            
+        } else if scrollView.contentOffset.y > -300 {
+            guard abs(scrollView.contentOffset.y) != collectionView.contentInset.top else { return }
+            collectionView.contentInset = UIEdgeInsets(top: 300, left: 0, bottom: 0, right: 0)
+            
+        }
+    }
+    
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        guard decelerate == false else { return }
+        guard scrollView.contentOffset.y < 0 && scrollView.contentOffset.y > -300 else { return }
+        collectionView.contentInset = UIEdgeInsets(top: 300, left: 0, bottom: 0, right: 0)
+        UIView.animate(withDuration: 0.3) {
+            self.collectionView.contentOffset.y = -50
+        }
+    }
+    
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        let velocity = scrollView.panGestureRecognizer.translation(in: scrollView).y
+        let scrollsToTop = velocity > 0
+        
+        guard scrollView.contentOffset.y < 0 && scrollView.contentOffset.y > -300 else { return }
+        collectionView.contentInset = UIEdgeInsets(top: 300, left: 0, bottom: 0, right: 0)
+        UIView.animate(withDuration: 0.3) {
+            self.collectionView.contentOffset.y = scrollsToTop ? -300 : -50
+        }
+    }
 }
 
 // MARK: CollectionView layout

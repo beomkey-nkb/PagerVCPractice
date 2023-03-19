@@ -97,6 +97,10 @@ extension MainPagerViewController {
     func setupStyling() {
         webtoonAdView.backgroundColor = .gray
         webtoonDayView.backgroundColor = .darkGray
+        
+        // 임시 hidden 처리
+        webtoonAdView.isHidden = true
+        webtoonDayView.isHidden = true
     }
     
     func setupPageViewController() {
