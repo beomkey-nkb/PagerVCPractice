@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		C1472D7329C32A5E00F08266 /* Gesture+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1472D7229C32A5E00F08266 /* Gesture+Extension.swift */; };
+		C1764FB929CEC25F006E557E /* Parent+Child.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1764FB829CEC25F006E557E /* Parent+Child.swift */; };
 		C1A668AB2984C0D90079F7E4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A668AA2984C0D90079F7E4 /* AppDelegate.swift */; };
 		C1A668B42984C0DA0079F7E4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C1A668B32984C0DA0079F7E4 /* Assets.xcassets */; };
 		C1A668B72984C0DA0079F7E4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C1A668B52984C0DA0079F7E4 /* LaunchScreen.storyboard */; };
@@ -43,6 +44,7 @@
 
 /* Begin PBXFileReference section */
 		C1472D7229C32A5E00F08266 /* Gesture+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Gesture+Extension.swift"; sourceTree = "<group>"; };
+		C1764FB829CEC25F006E557E /* Parent+Child.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Parent+Child.swift"; sourceTree = "<group>"; };
 		C1A668A72984C0D90079F7E4 /* PagerVCPractice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PagerVCPractice.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1A668AA2984C0D90079F7E4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C1A668B32984C0DA0079F7E4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -87,6 +89,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C1764FB729CEC24E006E557E /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				C1764FB829CEC25F006E557E /* Parent+Child.swift */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
 		C1A6689E2984C0D90079F7E4 = {
 			isa = PBXGroup;
 			children = (
@@ -201,6 +211,7 @@
 		C1BE4836299A73230014AF67 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				C1764FB729CEC24E006E557E /* Base */,
 				C1BE4837299A73300014AF67 /* MainPagerViewModel.swift */,
 				C1EFC4DD29B48BB400F02F79 /* DayWebtoonListViewModel.swift */,
 			);
@@ -354,6 +365,7 @@
 				C1BE4829299A61A90014AF67 /* HttpAPI.swift in Sources */,
 				C1EFC4D229B47A1C00F02F79 /* DayWebtoonListViewController.swift in Sources */,
 				C1ADD64729BDD2CB008A05A2 /* Array+Extension.swift in Sources */,
+				C1764FB929CEC25F006E557E /* Parent+Child.swift in Sources */,
 				C1EFC4D429B47BA900F02F79 /* WebtoonImageCellViewModel.swift in Sources */,
 				C1BE482D299A62DE0014AF67 /* Remote.swift in Sources */,
 				C1A668AB2984C0D90079F7E4 /* AppDelegate.swift in Sources */,
