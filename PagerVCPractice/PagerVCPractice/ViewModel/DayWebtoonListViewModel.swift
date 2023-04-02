@@ -9,7 +9,7 @@ import Foundation
 import Combine
 
 protocol DayWebtoonListListner {
-    func childCollectionView(current offsetY: CGFloat)
+    func childCollectionView(current offsetY: CGFloat, isAnimated: Bool)
 }
 
 final class DayWebtoonListViewModel: VMChild<MainPagerParentAction, DayWebtoonListListner> {
@@ -58,8 +58,8 @@ extension DayWebtoonListViewModel {
         photoPageListUsecase.loadNextPage()
     }
     
-    func deliverCollectionViewOffsetY(_ offsetY: CGFloat) {
-        listner?.childCollectionView(current: offsetY)
+    func deliverCollectionViewOffsetY(_ offsetY: CGFloat, isAnimated: Bool = false) {
+        listner?.childCollectionView(current: offsetY, isAnimated: isAnimated)
     }
 }
 

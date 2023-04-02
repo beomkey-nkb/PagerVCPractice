@@ -46,7 +46,22 @@ final class MainPagerViewController: UIViewController {
                 self.setupPageViewController()
                 self.setupLayout()
                 self.setupStyling()
+                self.bind(viewModel: self.viewModel)
             })
+            .store(in: &cancellables)
+    }
+    
+    private func bind(viewModel: MainPagerViewModel) {
+        viewModel
+            .headerTopAreaConstantPublisher
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] constant, isAnimated in
+                self?.adViewTopConstraint?.constant = constant
+                guard isAnimated else { return }
+                UIView.animate(withDuration: 0.3) {
+                    self?.view.layoutIfNeeded()
+                }
+            }
             .store(in: &cancellables)
     }
 }
@@ -98,10 +113,6 @@ extension MainPagerViewController {
     func setupStyling() {
         webtoonAdView.backgroundColor = .gray
         webtoonDayView.backgroundColor = .darkGray
-        
-        // 임시 hidden 처리
-        webtoonAdView.isHidden = true
-        webtoonDayView.isHidden = true
     }
     
     func setupPageViewController() {

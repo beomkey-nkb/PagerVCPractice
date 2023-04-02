@@ -125,7 +125,7 @@ extension DayWebtoonListViewController: UICollectionViewDelegate {
         guard scrollView.contentOffset.y < 0 && scrollView.contentOffset.y > -300 else { return }
         collectionView.contentInset = UIEdgeInsets(top: 300, left: 0, bottom: 0, right: 0)
         UIView.animate(withDuration: 0.3) {
-            self.viewModel.deliverCollectionViewOffsetY(-50)
+            self.viewModel.deliverCollectionViewOffsetY(-50, isAnimated: true)
             self.collectionView.contentOffset.y = -50
         }
     }
@@ -138,7 +138,7 @@ extension DayWebtoonListViewController: UICollectionViewDelegate {
         collectionView.contentInset = UIEdgeInsets(top: 300, left: 0, bottom: 0, right: 0)
         UIView.animate(withDuration: 0.3) {
             let offsetY: CGFloat = scrollsToTop ? -300 : -50
-            self.viewModel.deliverCollectionViewOffsetY(offsetY)
+            self.viewModel.deliverCollectionViewOffsetY(offsetY, isAnimated: true)
             self.collectionView.contentOffset.y = offsetY
         }
     }
@@ -158,6 +158,8 @@ private extension DayWebtoonListViewController {
         collectionView.isScrollEnabled = true
         collectionView.showsVerticalScrollIndicator = false
         collectionView.delegate = self
+        
+        (collectionView as UIScrollView).bounces = false
         collectionView.registerCell(cellType: DayWebtoonCollectionViewCell.self)
         collectionView.contentInset = UIEdgeInsets(top: 300, left: 0, bottom: 0, right: 0)
     }
