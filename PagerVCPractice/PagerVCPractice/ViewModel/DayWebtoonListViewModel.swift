@@ -8,7 +8,11 @@
 import Foundation
 import Combine
 
-final class DayWebtoonListViewModel {
+protocol DayWebtoonListListner {
+    func childCollectionView(current offsetY: CGFloat)
+}
+
+final class DayWebtoonListViewModel: VMChild<MainPagerParentAction, DayWebtoonListListner> {
     typealias PagedListUsecaseType = PagenationUsecase<Int, UnsplashPhoto>
     @Published var dataSource: [WebtoonImageCellViewModel] = []
     
@@ -18,10 +22,10 @@ final class DayWebtoonListViewModel {
     private var isScrollableCollectionViewSubject = PassthroughSubject<Bool, Never>()
     private var cancellables = Set<AnyCancellable>()
     
-    init() {
+    override init() {
         let pageAPI = Self.unsplashPhotoPagingAPI(usecase: self.imageLoaderUsecase)
         self.photoPageListUsecase = PagenationUsecase(api: pageAPI)
-        
+        super.init()
         self.observeTrigger()
     }
     
@@ -44,9 +48,18 @@ final class DayWebtoonListViewModel {
         
         photoPageListUsecase.renewPagedList()
     }
+}
+
+// MARK: Interactor
+
+extension DayWebtoonListViewModel {
     
     func nextImagePage() {
         photoPageListUsecase.loadNextPage()
+    }
+    
+    func deliverCollectionViewOffsetY(_ offsetY: CGFloat) {
+        listner?.childCollectionView(current: offsetY)
     }
 }
 

@@ -49,7 +49,5 @@ class VMChild<ParentAction, Listner>: VMChildProtocol {
     typealias Listner = Listner
     var listner: Listner?
     
-    func bindParentAction(_ publisher: AnyPublisher<ParentAction, Never>) {
-        
-    }
+    func bindParentAction(_ publisher: AnyPublisher<ParentAction, Never>) { }
 }

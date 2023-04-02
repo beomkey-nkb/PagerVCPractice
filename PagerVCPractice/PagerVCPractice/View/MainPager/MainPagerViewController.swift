@@ -13,6 +13,7 @@ final class MainPagerViewController: UIViewController {
     private let viewModel = MainPagerViewModel()
     private lazy var pagedViewControllers: [UIViewController] = {
         let listViewModel = DayWebtoonListViewModel()
+        listViewModel.listner = viewModel
         let test = DayWebtoonListViewController(viewModel: listViewModel)
         return [test]
     }()
