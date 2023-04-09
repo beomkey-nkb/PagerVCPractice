@@ -30,8 +30,9 @@ final class MainPagerViewController: UIViewController {
     private var webtoonDayView = UIView()
     
     private var adViewTopConstraint: NSLayoutConstraint?
-    private var beganPoint: CGPoint?
+    private var navigationViewTopConstraint: NSLayoutConstraint?
     private var currentIndex: Int = 0
+    private var navigationTopInset: CGFloat = 0
     private var cancellables = Set<AnyCancellable>()
     
     override func viewDidLoad() {
@@ -57,6 +58,7 @@ final class MainPagerViewController: UIViewController {
             .receive(on: DispatchQueue.main)
             .sink { [weak self] constant, isAnimated in
                 self?.adViewTopConstraint?.constant = constant
+                self?.setupNavigationTopInset(constant)
                 guard isAnimated else { return }
                 UIView.animate(withDuration: 0.3) {
                     self?.view.layoutIfNeeded()
@@ -72,18 +74,31 @@ extension MainPagerViewController {
     func setupLayout() {
         var constraints = [NSLayoutConstraint]()
         
-        [webtoonAdView, webtoonDayView, pageViewController.view].forEach { view in
+        [navigationView, webtoonAdView, webtoonDayView, pageViewController.view].forEach { view in
             view?.translatesAutoresizingMaskIntoConstraints = false
         }
         
-        let topSafeAreaInset = view.safeAreaInsets.top
+        let statusHeight = view.window?.windowScene?.statusBarManager?.statusBarFrame.height ?? 0
+        let navigationHeight = navigationController?.navigationBar.frame.height ?? 0
+        navigationTopInset = -(statusHeight + navigationHeight)
+        
+        view.addSubview(navigationView)
+        navigationViewTopConstraint = navigationView.topAnchor.constraint(equalTo: view.topAnchor, constant: navigationTopInset)
+        constraints += [
+            navigationViewTopConstraint!,
+            navigationView.leadingAnchor.constraint(equalTo: view.safeLeadingAnchor),
+            navigationView.trailingAnchor.constraint(equalTo: view.safeTrailingAnchor),
+            navigationView.heightAnchor.constraint(equalToConstant: -navigationTopInset)
+        ]
+        
+        let topInset = view.safeAreaInsets.top
         view.addSubview(webtoonAdView)
         adViewTopConstraint = webtoonAdView.topAnchor.constraint(equalTo: view.topAnchor)
         constraints += [
             adViewTopConstraint!,
             webtoonAdView.leadingAnchor.constraint(equalTo: view.safeLeadingAnchor),
             webtoonAdView.trailingAnchor.constraint(equalTo: view.safeTrailingAnchor),
-            webtoonAdView.heightAnchor.constraint(equalToConstant: topSafeAreaInset + 250)
+            webtoonAdView.heightAnchor.constraint(equalToConstant: topInset + 250)
         ]
         
         view.addSubview(webtoonDayView)
@@ -107,12 +122,20 @@ extension MainPagerViewController {
         NSLayoutConstraint.activate(constraints)
         view.bringSubviewToFront(webtoonAdView)
         view.bringSubviewToFront(webtoonDayView)
+        view.bringSubviewToFront(navigationView)
         pageViewController.didMove(toParent: self)
     }
     
     func setupStyling() {
+        navigationView.backgroundColor = .white
         webtoonAdView.backgroundColor = .gray
         webtoonDayView.backgroundColor = .darkGray
+    }
+    
+    func setupNavigationTopInset(_ topConstant: CGFloat) {
+        let percent = (250 - abs(topConstant)) / 250
+        let navTopInset = navigationTopInset * percent
+        navigationViewTopConstraint?.constant = navTopInset
     }
     
     func setupPageViewController() {
