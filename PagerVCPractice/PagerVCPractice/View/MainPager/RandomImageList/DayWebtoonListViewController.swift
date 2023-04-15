@@ -46,7 +46,7 @@ final class DayWebtoonListViewController: UIViewController {
     private func bind(viewModel: DayWebtoonListViewModel) {
         viewModel
             .$dataSource
-            .receive(on: RunLoop.main)
+            .receive(on: DispatchQueue.main)
             .sink { [weak self] cellViewModel in
                 self?.applyDataSource(cellViewModel)
             }
