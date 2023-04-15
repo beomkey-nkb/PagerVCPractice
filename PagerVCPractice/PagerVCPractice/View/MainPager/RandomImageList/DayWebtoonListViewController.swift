@@ -17,12 +17,8 @@ final class DayWebtoonListViewController: UIViewController {
     private var viewModel: DayWebtoonListViewModel
     
     private var collectionView: UICollectionView! = nil
-    private var dataSource: UICollectionViewDiffableDataSource<Section, WebtoonImageCellViewModel>!
+    private var dataSource: UICollectionViewDiffableDataSource<DayWebtoonListSection, WebtoonImageCellViewModel>!
     private var cancellables = Set<AnyCancellable>()
-    
-    enum Section: String {
-        case landomImageList = "RandomImageList"
-    }
     
     init(viewModel: DayWebtoonListViewModel) {
         self.viewModel = viewModel
@@ -88,7 +84,7 @@ extension DayWebtoonListViewController {
 extension DayWebtoonListViewController: UICollectionViewDelegate {
     
     func setupCollectionViewDataSource() {
-        dataSource = UICollectionViewDiffableDataSource<Section, WebtoonImageCellViewModel>.init(
+        dataSource = UICollectionViewDiffableDataSource<DayWebtoonListSection, WebtoonImageCellViewModel>.init(
             collectionView: collectionView,
             cellProvider: { collectionView, indexPath, itemIdentifier in
                 let cell: DayWebtoonCollectionViewCell = collectionView.dequeueCell(indexPath: indexPath)
@@ -99,9 +95,9 @@ extension DayWebtoonListViewController: UICollectionViewDelegate {
     }
     
     func applyDataSource(_ cellViewModels: [WebtoonImageCellViewModel]) {
-        var snapshot = NSDiffableDataSourceSnapshot<Section, WebtoonImageCellViewModel>()
-        snapshot.appendSections([.landomImageList])
-        snapshot.appendItems(cellViewModels, toSection: .landomImageList)
+        var snapshot = NSDiffableDataSourceSnapshot<DayWebtoonListSection, WebtoonImageCellViewModel>()
+        snapshot.appendSections([.dayWebtoonList])
+        snapshot.appendItems(cellViewModels, toSection: .dayWebtoonList)
         dataSource.apply(snapshot, animatingDifferences: false)
     }
     
