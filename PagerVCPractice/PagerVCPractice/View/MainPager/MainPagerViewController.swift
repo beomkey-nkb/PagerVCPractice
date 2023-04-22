@@ -26,7 +26,7 @@ final class MainPagerViewController: UIViewController {
     }()
     
     private var navigationView = UIView()
-    private var webtoonAdView = UIView()
+    private var webtoonAdView = WebtoonAdView()
     private var webtoonDayView = UIView()
     
     private var adViewTopConstraint: NSLayoutConstraint?
@@ -127,9 +127,8 @@ extension MainPagerViewController {
     }
     
     func setupStyling() {
-        navigationView.backgroundColor = .white
-        webtoonAdView.backgroundColor = .gray
         webtoonDayView.backgroundColor = .darkGray
+        navigationView.backgroundColor = .white
     }
     
     func setupNavigationTopInset(_ topConstant: CGFloat) {
