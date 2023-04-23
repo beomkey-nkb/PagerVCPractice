@@ -13,14 +13,13 @@ import Kingfisher
 final class WebtoonAdView: UIView {
     private var viewModel: WebtoonAdViewModel
     
-    private var imageView1 = UIImageView()
-    private var imageView2 = UIImageView()
+    private var frontImageView = UIImageView()
+    private var backgroundImageView = UIImageView()
     private var collectionView: UICollectionView! = nil
-    
-    private var frontImageView: UIImageView? = nil
-    private var backgroundImageView: UIImageView? = nil
+
     private let adMaxCount: Int = 100
     private var photos = [UnsplashPhoto]()
+    private var currentIndex: Int = 60
     private var cancellables = Set<AnyCancellable>()
     
     enum CollectionViewMetric {
@@ -55,11 +54,17 @@ final class WebtoonAdView: UIView {
             .publisher(for: \.bounds)
             .filter { $0.height != 0 }
             .map { _ in }
+            .combineLatest(viewModel.$dataSource.filter { $0.isEmpty == false })
             .receive(on: DispatchQueue.main)
             .first()
             .sink { [weak self] _ in
+                guard let self = self else { return }
                 let indexPath = IndexPath(item: 60, section: 0)
-                self?.collectionView.scrollToItem(
+                guard self.photos.isEmpty == false,
+                      let url = URL(string: self.photos[0].urls.regular)
+                else { return }
+                self.frontImageView.kf.setImage(with: url)
+                self.collectionView.scrollToItem(
                     at: indexPath,
                     at: .centeredHorizontally,
                     animated: false
@@ -75,6 +80,71 @@ final class WebtoonAdView: UIView {
                 self?.collectionView.reloadData()
             }
             .store(in: &cancellables)
+        
+        collectionView
+            .publisher(for: \.contentOffset)
+            .map { $0.x }
+            .filter { $0 > 0 }
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] offsetX in
+                guard let self = self else { return }
+                self.handleImageAlpha(offsetX)
+            }
+            .store(in: &cancellables)
+    }
+}
+
+// MARK: handle Ad Images
+
+private extension WebtoonAdView {
+    
+    func handleImageAlpha(_ offsetX: CGFloat) {
+        let insetLeft = CollectionViewMetric.contentInset.left
+        let cellWidth = CollectionViewMetric.cellWidth + CollectionViewMetric.itemSpacing
+        let value = (offsetX + insetLeft) / cellWidth
+        let rounded = floor(value)
+        
+        if value == rounded {
+            guard Int(rounded) != currentIndex else {
+                clearImageAlpha()
+                return
+            }
+            currentIndex = Int(value)
+            exchangeImageViewPosition()
+            clearImageAlpha()
+            
+        } else if value > CGFloat(currentIndex) {
+            let nextIndex = Int(ceil(value))
+            let imageAlpha = 1 - (value - rounded)
+            handleImageAnimation(nextIndex, imageAlpha: imageAlpha)
+            
+        } else {
+            let nextIndex = Int(rounded)
+            let imageAlpha = value - rounded
+            handleImageAnimation(nextIndex, imageAlpha: imageAlpha)
+
+        }
+    }
+    
+    func clearImageAlpha() {
+        frontImageView.alpha = 1.0
+        backgroundImageView.alpha = 1.0
+        backgroundImageView.image = nil
+    }
+    
+    func exchangeImageViewPosition() {
+        let back = backgroundImageView
+        let front = frontImageView
+        frontImageView = back
+        backgroundImageView = front
+        sendSubviewToBack(backgroundImageView)
+    }
+    
+    func handleImageAnimation(_ nextIndex: Int, imageAlpha: CGFloat) {
+        let urlString = photos[nextIndex % 20].urls.regular
+        let url = URL(string: urlString)
+        self.backgroundImageView.kf.setImage(with: url)
+        self.frontImageView.alpha = imageAlpha
     }
 }
 
@@ -85,24 +155,24 @@ extension WebtoonAdView {
     func setupLayout() {
         var constraints = [NSLayoutConstraint]()
         
-        [imageView1, imageView2, collectionView].forEach { view in
+        [frontImageView, backgroundImageView, collectionView].forEach { view in
             view.translatesAutoresizingMaskIntoConstraints = false
         }
         
-        addSubview(imageView1)
+        addSubview(frontImageView)
         constraints += [
-            imageView1.topAnchor.constraint(equalTo: topAnchor),
-            imageView1.leadingAnchor.constraint(equalTo: leadingAnchor),
-            imageView1.trailingAnchor.constraint(equalTo: trailingAnchor),
-            imageView1.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -50)
+            frontImageView.topAnchor.constraint(equalTo: topAnchor),
+            frontImageView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            frontImageView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            frontImageView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -35)
         ]
         
-        addSubview(imageView2)
+        addSubview(backgroundImageView)
         constraints += [
-            imageView2.topAnchor.constraint(equalTo: topAnchor),
-            imageView2.leadingAnchor.constraint(equalTo: leadingAnchor),
-            imageView2.trailingAnchor.constraint(equalTo: trailingAnchor),
-            imageView2.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -50)
+            backgroundImageView.topAnchor.constraint(equalTo: topAnchor),
+            backgroundImageView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            backgroundImageView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            backgroundImageView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -35)
         ]
         
         addSubview(collectionView)
@@ -113,15 +183,13 @@ extension WebtoonAdView {
             collectionView.heightAnchor.constraint(equalToConstant: 50)
         ]
         
-        frontImageView = imageView1
-        backgroundImageView = imageView2
-        bringSubviewToFront(imageView1)
+        sendSubviewToBack(backgroundImageView)
         NSLayoutConstraint.activate(constraints)
     }
     
     func setupStyling() {
-        imageView1.contentMode = .scaleAspectFill
-        imageView2.contentMode = .scaleAspectFill
+        frontImageView.contentMode = .scaleToFill
+        backgroundImageView.contentMode = .scaleToFill
     }
     
     func setupCollectionView() {
