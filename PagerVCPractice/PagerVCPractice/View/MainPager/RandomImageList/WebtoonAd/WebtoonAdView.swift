@@ -63,6 +63,9 @@ final class WebtoonAdView: UIView {
                 guard self.photos.isEmpty == false,
                       let url = URL(string: self.photos[0].urls.regular)
                 else { return }
+                
+                self.setupImageGradient(self.frontImageView)
+                self.setupImageGradient(self.backgroundImageView)
                 self.frontImageView.kf.setImage(with: url)
                 self.collectionView.scrollToItem(
                     at: indexPath,
@@ -146,6 +149,15 @@ private extension WebtoonAdView {
         self.backgroundImageView.kf.setImage(with: url)
         self.frontImageView.alpha = imageAlpha
     }
+    
+    func setupImageGradient(_ imageView: UIImageView) {
+        let gradient = CAGradientLayer()
+        gradient.frame = self.frontImageView.frame
+        gradient.colors = [UIColor.clear.cgColor, UIColor.white.cgColor]
+        gradient.startPoint = CGPoint(x: 0, y: 0.75)
+        gradient.endPoint = CGPoint(x: 0, y: 1.0)
+        imageView.layer.addSublayer(gradient)
+    }
 }
 
 // MARK: Presentable
@@ -164,7 +176,7 @@ extension WebtoonAdView {
             frontImageView.topAnchor.constraint(equalTo: topAnchor),
             frontImageView.leadingAnchor.constraint(equalTo: leadingAnchor),
             frontImageView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            frontImageView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -35)
+            frontImageView.bottomAnchor.constraint(equalTo: bottomAnchor)
         ]
         
         addSubview(backgroundImageView)
@@ -172,7 +184,7 @@ extension WebtoonAdView {
             backgroundImageView.topAnchor.constraint(equalTo: topAnchor),
             backgroundImageView.leadingAnchor.constraint(equalTo: leadingAnchor),
             backgroundImageView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            backgroundImageView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -35)
+            backgroundImageView.bottomAnchor.constraint(equalTo: bottomAnchor)
         ]
         
         addSubview(collectionView)
@@ -189,6 +201,7 @@ extension WebtoonAdView {
     
     func setupStyling() {
         frontImageView.contentMode = .scaleToFill
+        
         backgroundImageView.contentMode = .scaleToFill
     }
     
