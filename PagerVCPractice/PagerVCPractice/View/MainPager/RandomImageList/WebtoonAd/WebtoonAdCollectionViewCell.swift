@@ -89,14 +89,9 @@ final class WebtoonAdCollectionViewCell: UICollectionViewCell {
 extension WebtoonAdCollectionViewCell {
     
     func configure(_ photo: UnsplashPhoto) {
-        let colorValue = CGFloat(abs(photo.urls.thumb.hashValue) % 255)
-        
-        mainContainerView.backgroundColor = .init(
-            red: colorValue / 255.0,
-            green: colorValue / 255.0,
-            blue: colorValue / 255.0,
-            alpha: 1.0
-        )
+        let colorValue = CGFloat(abs(photo.urls.thumb.hashValue) % 3)
+        let colorArray: [UIColor] = [.darkGray, .gray, .lightGray]
+        mainContainerView.backgroundColor = colorArray[Int(colorValue)]
         
         idLabel.text = photo.id
         nameLabel.text = photo.user.name
