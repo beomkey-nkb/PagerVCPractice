@@ -34,10 +34,10 @@ final class WebtoonAdCollectionViewCell: UICollectionViewCell {
         
         contentView.addSubview(mainContainerView)
         constraints += [
-            mainContainerView.topAnchor.constraint(equalTo: contentView.topAnchor),
+            mainContainerView.heightAnchor.constraint(equalToConstant: 50),
             mainContainerView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             mainContainerView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            mainContainerView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
+            mainContainerView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10)
         ]
         
         mainContainerView.addSubview(summaryLabel)

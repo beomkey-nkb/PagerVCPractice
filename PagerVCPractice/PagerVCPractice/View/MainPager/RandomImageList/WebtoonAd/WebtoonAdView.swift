@@ -202,8 +202,8 @@ extension WebtoonAdView {
         constraints += [
             collectionView.leadingAnchor.constraint(equalTo: leadingAnchor),
             collectionView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            collectionView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10),
-            collectionView.heightAnchor.constraint(equalToConstant: 50)
+            collectionView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            collectionView.topAnchor.constraint(equalTo: safeTopAnchor)
         ]
         
         sendSubviewToBack(backgroundImageView)
@@ -223,7 +223,7 @@ extension WebtoonAdView {
     
     func setupCollectionView() {
         let layout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize(width: CollectionViewMetric.cellWidth, height: 50)
+        layout.itemSize = CGSize(width: CollectionViewMetric.cellWidth, height: 250)
         layout.minimumInteritemSpacing = CollectionViewMetric.itemSpacing
         layout.scrollDirection = .horizontal
         
