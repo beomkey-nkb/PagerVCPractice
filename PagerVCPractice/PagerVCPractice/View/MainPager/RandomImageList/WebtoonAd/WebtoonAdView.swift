@@ -54,8 +54,7 @@ final class WebtoonAdView: UIView {
             .publisher(for: \.bounds)
             .filter { $0.height != 0 }
             .map { _ in }
-            .combineLatest(viewModel.$dataSource.filter { $0.isEmpty == false })
-            .receive(on: DispatchQueue.main)
+            .delay(for: 0.2, scheduler: RunLoop.main)
             .first()
             .sink { [weak self] _ in
                 guard let self = self else { return }
@@ -201,7 +200,6 @@ extension WebtoonAdView {
     
     func setupStyling() {
         frontImageView.contentMode = .scaleToFill
-        
         backgroundImageView.contentMode = .scaleToFill
     }
     
