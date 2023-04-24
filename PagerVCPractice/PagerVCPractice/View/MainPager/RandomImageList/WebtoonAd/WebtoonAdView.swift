@@ -15,6 +15,7 @@ final class WebtoonAdView: UIView {
     
     private var frontImageView = UIImageView()
     private var backgroundImageView = UIImageView()
+    private var currentIndexLabel = BasePaddingLabel(padding: .init(top: 3.5, left: 7, bottom: 3.5, right: 7))
     private var collectionView: UICollectionView! = nil
 
     private let adMaxCount: Int = 100
@@ -54,7 +55,7 @@ final class WebtoonAdView: UIView {
             .publisher(for: \.bounds)
             .filter { $0.height != 0 }
             .map { _ in }
-            .delay(for: 0.2, scheduler: RunLoop.main)
+            .delay(for: 0.5, scheduler: RunLoop.main)
             .first()
             .sink { [weak self] _ in
                 guard let self = self else { return }
@@ -112,6 +113,7 @@ private extension WebtoonAdView {
                 return
             }
             currentIndex = Int(value)
+            setupCurrentIndexText()
             exchangeImageViewPosition()
             clearImageAlpha()
             
@@ -157,6 +159,10 @@ private extension WebtoonAdView {
         gradient.endPoint = CGPoint(x: 0, y: 1.0)
         imageView.layer.addSublayer(gradient)
     }
+    
+    func setupCurrentIndexText() {
+        currentIndexLabel.text = "\(currentIndex % 20 + 1) / 20"
+    }
 }
 
 // MARK: Presentable
@@ -166,7 +172,7 @@ extension WebtoonAdView {
     func setupLayout() {
         var constraints = [NSLayoutConstraint]()
         
-        [frontImageView, backgroundImageView, collectionView].forEach { view in
+        [frontImageView, backgroundImageView, currentIndexLabel, collectionView].forEach { view in
             view.translatesAutoresizingMaskIntoConstraints = false
         }
         
@@ -186,6 +192,12 @@ extension WebtoonAdView {
             backgroundImageView.bottomAnchor.constraint(equalTo: bottomAnchor)
         ]
         
+        addSubview(currentIndexLabel)
+        constraints += [
+            currentIndexLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -70),
+            currentIndexLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -15)
+        ]
+        
         addSubview(collectionView)
         constraints += [
             collectionView.leadingAnchor.constraint(equalTo: leadingAnchor),
@@ -201,6 +213,12 @@ extension WebtoonAdView {
     func setupStyling() {
         frontImageView.contentMode = .scaleToFill
         backgroundImageView.contentMode = .scaleToFill
+        currentIndexLabel.textColor = .white
+        currentIndexLabel.clipsToBounds = true
+        currentIndexLabel.backgroundColor = .darkGray.withAlphaComponent(0.5)
+        currentIndexLabel.layer.cornerRadius = 10
+        currentIndexLabel.font = .systemFont(ofSize: 12)
+        setupCurrentIndexText()
     }
     
     func setupCollectionView() {
