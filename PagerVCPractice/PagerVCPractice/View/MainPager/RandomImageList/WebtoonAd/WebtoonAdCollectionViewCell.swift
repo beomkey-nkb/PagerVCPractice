@@ -65,7 +65,6 @@ final class WebtoonAdCollectionViewCell: UICollectionViewCell {
     }
     
     func setupStyling() {
-        mainContainerView.backgroundColor = .blue
         mainContainerView.layer.cornerRadius = 5
         
         summaryLabel.textAlignment = .center

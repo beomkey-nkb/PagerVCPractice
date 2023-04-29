@@ -55,7 +55,7 @@ final class WebtoonAdView: UIView {
             .publisher(for: \.bounds)
             .filter { $0.height != 0 }
             .map { _ in }
-            .delay(for: 0.5, scheduler: RunLoop.main)
+            .delay(for: 0.5, scheduler: DispatchQueue.main)
             .first()
             .sink { [weak self] _ in
                 guard let self = self else { return }

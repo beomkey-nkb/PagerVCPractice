@@ -27,7 +27,12 @@ final class MainPagerViewController: UIViewController {
     
     private var navigationView = UIView()
     private var webtoonAdView = WebtoonAdView()
-    private var webtoonDayView = UIView()
+    private lazy var webtoonDayView: WebtoonDayView = {
+        let dayViewModel = WebtoonDayViewModel(focusIndex: currentIndex)
+        dayViewModel.listner = viewModel
+        dayViewModel.bindParentAction(viewModel.transferSubject.eraseToAnyPublisher())
+        return WebtoonDayView(viewModel: dayViewModel)
+    }()
     
     private var adViewTopConstraint: NSLayoutConstraint?
     private var navigationViewTopConstraint: NSLayoutConstraint?
@@ -127,7 +132,6 @@ extension MainPagerViewController {
     }
     
     func setupStyling() {
-        webtoonDayView.backgroundColor = .darkGray
         navigationView.backgroundColor = .white
     }
     
