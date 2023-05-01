@@ -42,6 +42,10 @@ protocol VMChildProtocol: AnyObject {
 class VMParent<ParentAction>: VMParentProtocol {
     typealias ParentAction = ParentAction
     var transferSubject: PassthroughSubject<ParentAction, Never> = .init()
+    
+    var transferPublisher: AnyPublisher<ParentAction, Never> {
+        return transferSubject.eraseToAnyPublisher()
+    }
 }
 
 class VMChild<ParentAction, Listner>: VMChildProtocol {

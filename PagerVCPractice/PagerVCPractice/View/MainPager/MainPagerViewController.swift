@@ -15,7 +15,7 @@ final class MainPagerViewController: UIViewController {
         return (0..<7).map { value in
             let listViewModel = DayWebtoonListViewModel(currentPage: value + 1)
             listViewModel.listner = viewModel
-            listViewModel.bindParentAction(viewModel.transferSubject.eraseToAnyPublisher())
+            listViewModel.bindParentAction(viewModel.transferPublisher)
             return DayWebtoonListViewController(viewModel: listViewModel)
         }
     }()
@@ -32,7 +32,7 @@ final class MainPagerViewController: UIViewController {
     private lazy var webtoonDayView: WebtoonDayView = {
         let dayViewModel = WebtoonDayViewModel(focusIndex: viewModel.currentFocusIndex)
         dayViewModel.listner = viewModel
-        dayViewModel.bindParentAction(viewModel.transferSubject.eraseToAnyPublisher())
+        dayViewModel.bindParentAction(viewModel.transferPublisher)
         return WebtoonDayView(viewModel: dayViewModel)
     }()
     
