@@ -31,6 +31,9 @@ final class WebtoonDayViewModel: VMChild<MainPagerParentAction, WebtoonDayListne
                 switch action {
                 case .changeFocus(let index):
                     self?.currentFocusSubject.send(index)
+                    
+                default:
+                    break
                 }
             }
             .store(in: &cancellables)

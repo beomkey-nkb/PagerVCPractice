@@ -48,9 +48,20 @@ final class DayWebtoonListViewController: UIViewController {
             }
             .store(in: &cancellables)
         
-        collectionView
-            .scrollBottomHit
-            .sink(receiveValue: viewModel.nextImagePage)
+        let finishSetupOffset = collectionView
+            .publisher(for: \.contentOffset)
+            .map(\.y)
+            .removeDuplicates()
+            .filter { $0 == -300 }
+            .first()
+            .map { _ in }
+        
+        finishSetupOffset
+            .combineLatest(viewModel.changeOffsetY)
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] (_, offsetY) in
+                self?.collectionView.contentOffset.y = offsetY
+            }
             .store(in: &cancellables)
     }
 }

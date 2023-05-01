@@ -16,47 +16,51 @@ final class DayWebtoonListViewModel: VMChild<MainPagerParentAction, DayWebtoonLi
     typealias PagedListUsecaseType = PagenationUsecase<Int, UnsplashPhoto>
     @Published var dataSource: [WebtoonImageCellViewModel] = []
     
-    private var photoPageListUsecase: PagedListUsecaseType
     private var imageLoaderUsecase = ImageLoaderUsecase.factory()
-    
-    private var isScrollableCollectionViewSubject = PassthroughSubject<Bool, Never>()
+    private let currentPage: Int
+    private let changeOffsetYSubject = CurrentValueSubject<CGFloat?, Never>.init(nil)
     private var cancellables = Set<AnyCancellable>()
     
-    override init() {
-        let pageAPI = Self.unsplashPhotoPagingAPI(usecase: self.imageLoaderUsecase)
-        self.photoPageListUsecase = PagenationUsecase(api: pageAPI)
+    var changeOffsetY: AnyPublisher<CGFloat, Never> {
+        return changeOffsetYSubject
+            .compactMap { $0 }
+            .eraseToAnyPublisher()
+    }
+    
+    init(currentPage: Int) {
+        self.currentPage = currentPage
         super.init()
         self.observeTrigger()
     }
     
-    static private func unsplashPhotoPagingAPI(usecase: ImageLoaderUsecase) -> PagedListUsecaseType.PageAPI {
-        return { direction in
-            let cursor = direction?.cursor ?? 1
-            return usecase.loadPhotos(page: cursor, perPage: 15)
-                .map { Page(nextCursor: cursor+1, items: $0) }
-                .eraseToAnyPublisher()
-        }
+    override func bindParentAction(_ publisher: AnyPublisher<MainPagerParentAction, Never>) {
+        publisher
+            .sink { [weak self] action in
+                guard let self = self else { return }
+                switch action {
+                case let .changeOffset(page, offset):
+                    guard self.currentPage == page else { return }
+                    self.changeOffsetYSubject.send(offset)
+                default:
+                    break
+                }
+            }
+            .store(in: &cancellables)
     }
     
     private func observeTrigger() {
-        photoPageListUsecase
-            .pagedList
-            .assertNoFailure()
+        imageLoaderUsecase
+            .loadPhotos(page: currentPage, perPage: 18)
             .map { $0.map { $0.toWebtoonImageCellViewModel() } }
+            .assertNoFailure()
             .assign(to: \.dataSource, on: self)
             .store(in: &cancellables)
-        
-        photoPageListUsecase.renewPagedList()
     }
 }
 
 // MARK: Interactor
 
 extension DayWebtoonListViewModel {
-    
-    func nextImagePage() {
-        photoPageListUsecase.loadNextPage()
-    }
     
     func deliverCollectionViewOffsetY(_ offsetY: CGFloat, isAnimated: Bool = false) {
         listner?.childCollectionView(current: offsetY, isAnimated: isAnimated)

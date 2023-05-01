@@ -12,10 +12,12 @@ import Combine
 final class MainPagerViewController: UIViewController {
     private let viewModel = MainPagerViewModel()
     private lazy var pagedViewControllers: [UIViewController] = {
-        let listViewModel = DayWebtoonListViewModel()
-        listViewModel.listner = viewModel
-        let test = DayWebtoonListViewController(viewModel: listViewModel)
-        return [test]
+        return (0..<7).map { value in
+            let listViewModel = DayWebtoonListViewModel(currentPage: value + 1)
+            listViewModel.listner = viewModel
+            listViewModel.bindParentAction(viewModel.transferSubject.eraseToAnyPublisher())
+            return DayWebtoonListViewController(viewModel: listViewModel)
+        }
     }()
     
     private lazy var pageViewController: UIPageViewController = {
@@ -28,7 +30,7 @@ final class MainPagerViewController: UIViewController {
     private var navigationView = UIView()
     private var webtoonAdView = WebtoonAdView()
     private lazy var webtoonDayView: WebtoonDayView = {
-        let dayViewModel = WebtoonDayViewModel(focusIndex: currentIndex)
+        let dayViewModel = WebtoonDayViewModel(focusIndex: viewModel.currentFocusIndex)
         dayViewModel.listner = viewModel
         dayViewModel.bindParentAction(viewModel.transferSubject.eraseToAnyPublisher())
         return WebtoonDayView(viewModel: dayViewModel)
@@ -36,7 +38,6 @@ final class MainPagerViewController: UIViewController {
     
     private var adViewTopConstraint: NSLayoutConstraint?
     private var navigationViewTopConstraint: NSLayoutConstraint?
-    private var currentIndex: Int = 0
     private var navigationTopInset: CGFloat = 0
     private var cancellables = Set<AnyCancellable>()
     
@@ -68,6 +69,20 @@ final class MainPagerViewController: UIViewController {
                 UIView.animate(withDuration: 0.3) {
                     self?.view.layoutIfNeeded()
                 }
+            }
+            .store(in: &cancellables)
+        
+        viewModel
+            .currentFocus
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] index in
+                guard let viewController = self?.pagedViewControllers[index]
+                else { return }
+                self?.pageViewController.setViewControllers(
+                    [viewController],
+                    direction: .forward,
+                    animated: true
+                )
             }
             .store(in: &cancellables)
     }
@@ -162,7 +177,6 @@ extension MainPagerViewController: UIPageViewControllerDelegate, UIPageViewContr
         if previousIndex < 0 {
             return nil
         }
-        currentIndex = previousIndex
         return pagedViewControllers[previousIndex]
     }
     
@@ -172,7 +186,15 @@ extension MainPagerViewController: UIPageViewControllerDelegate, UIPageViewContr
         if nextIndex == pagedViewControllers.count {
             return nil
         }
-        currentIndex = nextIndex
         return pagedViewControllers[nextIndex]
+    }
+    
+    func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
+        guard completed,
+              let currentVC = pageViewController.viewControllers?.first,
+              let index = pagedViewControllers.firstIndex(of: currentVC)
+        else { return }
+        
+        viewModel.scrollTo(index)
     }
 }
