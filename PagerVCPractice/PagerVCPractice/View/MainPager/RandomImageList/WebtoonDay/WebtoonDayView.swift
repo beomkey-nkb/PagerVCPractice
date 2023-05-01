@@ -12,6 +12,7 @@ import Combine
 final class WebtoonDayView: UIView {
     private let viewModel: WebtoonDayViewModel
     private var collectionView: UICollectionView! = nil
+    private var deviderView = UIView()
     private var dataSource: UICollectionViewDiffableDataSource<String, WebtoonDayCellViewModel>!
     private var cancellables = Set<AnyCancellable>()
     
@@ -21,6 +22,7 @@ final class WebtoonDayView: UIView {
         self.setupCollectionView()
         self.setupCollectionViewDataSource()
         self.setupLayout()
+        self.setupStyling()
         self.bind(viewModel: viewModel)
     }
     
@@ -43,7 +45,7 @@ private extension WebtoonDayView {
     func setupCollectionView() {
         let layout = UICollectionViewFlowLayout()
         let deviceWidth = UIScreen.main.bounds.width
-        layout.itemSize = CGSize(width: deviceWidth / 8, height: 50)
+        layout.itemSize = CGSize(width: deviceWidth / 8, height: 49)
         layout.scrollDirection = .horizontal
         
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
@@ -57,16 +59,29 @@ private extension WebtoonDayView {
     func setupLayout() {
         var constraints = [NSLayoutConstraint]()
         collectionView.translatesAutoresizingMaskIntoConstraints = false
+        deviderView.translatesAutoresizingMaskIntoConstraints = false
         
         addSubview(collectionView)
         constraints += [
             collectionView.topAnchor.constraint(equalTo: topAnchor),
             collectionView.leadingAnchor.constraint(equalTo: leadingAnchor),
             collectionView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            collectionView.bottomAnchor.constraint(equalTo: bottomAnchor)
+            collectionView.bottomAnchor.constraint(equalTo: deviderView.topAnchor)
+        ]
+        
+        addSubview(deviderView)
+        constraints += [
+            deviderView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            deviderView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            deviderView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            deviderView.heightAnchor.constraint(equalToConstant: 1)
         ]
         
         NSLayoutConstraint.activate(constraints)
+    }
+    
+    func setupStyling() {
+        deviderView.backgroundColor = .lightGray.withAlphaComponent(0.5)
     }
 }
 
