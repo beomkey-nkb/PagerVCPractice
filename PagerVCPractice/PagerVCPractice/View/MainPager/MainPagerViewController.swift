@@ -28,6 +28,7 @@ final class MainPagerViewController: UIViewController {
     }()
     
     private var navigationView = UIView()
+    private var navigationTitleLabel = UILabel()
     private var webtoonAdView = WebtoonAdView()
     private lazy var webtoonDayView: WebtoonDayView = {
         let dayViewModel = WebtoonDayViewModel(focusIndex: viewModel.currentFocusIndex)
@@ -95,7 +96,7 @@ extension MainPagerViewController {
     func setupLayout() {
         var constraints = [NSLayoutConstraint]()
         
-        [navigationView, webtoonAdView, webtoonDayView, pageViewController.view].forEach { view in
+        [navigationView, navigationTitleLabel, webtoonAdView, webtoonDayView, pageViewController.view].forEach { view in
             view?.translatesAutoresizingMaskIntoConstraints = false
         }
         
@@ -110,6 +111,13 @@ extension MainPagerViewController {
             navigationView.leadingAnchor.constraint(equalTo: view.safeLeadingAnchor),
             navigationView.trailingAnchor.constraint(equalTo: view.safeTrailingAnchor),
             navigationView.heightAnchor.constraint(equalToConstant: -navigationTopInset)
+        ]
+        
+        navigationView.addSubview(navigationTitleLabel)
+        constraints += [
+            navigationTitleLabel.centerXAnchor.constraint(equalTo: navigationView.centerXAnchor),
+            navigationTitleLabel.topAnchor.constraint(equalTo: navigationView.topAnchor, constant: statusHeight),
+            navigationTitleLabel.bottomAnchor.constraint(equalTo: navigationView.bottomAnchor)
         ]
         
         let topInset = view.safeAreaInsets.top
@@ -149,6 +157,8 @@ extension MainPagerViewController {
     
     func setupStyling() {
         navigationView.backgroundColor = .white
+        navigationTitleLabel.text = "webtoon-clone"
+        navigationTitleLabel.font = .systemFont(ofSize: 17, weight: .semibold)
     }
     
     func setupNavigationTopInset(_ topConstant: CGFloat) {
