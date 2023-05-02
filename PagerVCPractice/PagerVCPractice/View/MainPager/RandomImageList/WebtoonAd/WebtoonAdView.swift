@@ -245,7 +245,9 @@ extension WebtoonAdView: UICollectionViewDelegate, UICollectionViewDataSource {
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         let scrolledOffsetX = targetContentOffset.pointee.x + scrollView.contentInset.left
         let cellWidth = CollectionViewMetric.cellWidth + CollectionViewMetric.itemSpacing
-        let index = round(scrolledOffsetX / cellWidth)
+        var index: CGFloat = scrolledOffsetX / cellWidth
+        let velocityX = Int(scrollView.panGestureRecognizer.velocity(in: self).x)
+        index = velocityX < 0 ? ceil(index) : floor(index)
         targetContentOffset.pointee = CGPoint(x: index * cellWidth - scrollView.contentInset.left, y: scrollView.contentInset.top)
     }
     
