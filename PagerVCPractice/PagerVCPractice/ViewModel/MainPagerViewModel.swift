@@ -10,7 +10,7 @@ import Combine
 
 enum MainPagerParentAction {
     case changeFocus(_ index: Int)
-    case changeOffset(page: Int, offset: CGFloat)
+    case changeOffset(offset: CGFloat)
 }
 
 final class MainPagerViewModel: VMParent<MainPagerParentAction> {
@@ -24,7 +24,6 @@ final class MainPagerViewModel: VMParent<MainPagerParentAction> {
         return currentFocusSubject
             .handleEvents(receiveOutput: { index in
                 let parentAction: MainPagerParentAction = .changeOffset(
-                    page: index+1,
                     offset: -(self.currentTopConstant + 300)
                 )
                 self.transferSubject.send(parentAction)
@@ -60,6 +59,13 @@ final class MainPagerViewModel: VMParent<MainPagerParentAction> {
     
     func scrollTo(_ index: Int) {
         currentFocusSubject.send(index)
+    }
+    
+    func transferChangeOffset() {
+        let parentAction: MainPagerParentAction = .changeOffset(
+            offset: -(self.currentTopConstant + 300)
+        )
+        self.transferSubject.send(parentAction)
     }
 }
 

@@ -74,6 +74,7 @@ final class MainPagerViewController: UIViewController {
         
         viewModel
             .currentFocus
+            .removeDuplicates()
             .receive(on: DispatchQueue.main)
             .sink { [weak self] index in
                 guard let viewController = self?.pagedViewControllers[index]
@@ -187,6 +188,10 @@ extension MainPagerViewController: UIPageViewControllerDelegate, UIPageViewContr
             return nil
         }
         return pagedViewControllers[nextIndex]
+    }
+    
+    func pageViewController(_ pageViewController: UIPageViewController, willTransitionTo pendingViewControllers: [UIViewController]) {
+        viewModel.transferChangeOffset()
     }
     
     func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {

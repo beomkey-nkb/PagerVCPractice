@@ -38,8 +38,7 @@ final class DayWebtoonListViewModel: VMChild<MainPagerParentAction, DayWebtoonLi
             .sink { [weak self] action in
                 guard let self = self else { return }
                 switch action {
-                case let .changeOffset(page, offset):
-                    guard self.currentPage == page else { return }
+                case let .changeOffset(offset):
                     self.changeOffsetYSubject.send(offset)
                 default:
                     break
