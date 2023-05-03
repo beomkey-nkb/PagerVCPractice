@@ -77,8 +77,8 @@ extension DayWebtoonListViewController {
         view.addSubview(collectionView)
         constraints += [
             collectionView.topAnchor.constraint(equalTo: view.safeTopAnchor),
-            collectionView.leadingAnchor.constraint(equalTo: view.safeLeadingAnchor, constant: 16),
-            collectionView.trailingAnchor.constraint(equalTo: view.safeTrailingAnchor, constant: -16),
+            collectionView.leadingAnchor.constraint(equalTo: view.safeLeadingAnchor),
+            collectionView.trailingAnchor.constraint(equalTo: view.safeTrailingAnchor),
             collectionView.bottomAnchor.constraint(equalTo: view.safeBottomAnchor)
         ]
         
@@ -210,7 +210,26 @@ private extension DayWebtoonListViewController {
             count: 3
         )
         let section = NSCollectionLayoutSection(group: group)
-        section.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 0, bottom: 0, trailing: 0)
+        section.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 16, bottom: 0, trailing: 16)
+        return section
+    }
+    
+    func horizontalWebtoonListLayout() -> NSCollectionLayoutSection {
+        let itemSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1.0),
+            heightDimension: .fractionalHeight(1.0)
+        )
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        item.contentInsets = NSDirectionalEdgeInsets(top: 5, leading: 0, bottom: 5, trailing: 5)
+        let groupSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(0.35),
+            heightDimension: .absolute(170)
+        )
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+        let section = NSCollectionLayoutSection(group: group)
+        section.interGroupSpacing = 10
+        section.orthogonalScrollingBehavior = .continuousGroupLeadingBoundary
+        section.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 16, bottom: 10, trailing: 16)
         return section
     }
 }
