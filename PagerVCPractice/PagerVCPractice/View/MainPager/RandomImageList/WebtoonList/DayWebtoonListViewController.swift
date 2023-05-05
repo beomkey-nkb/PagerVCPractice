@@ -105,6 +105,11 @@ extension DayWebtoonListViewController {
         (collectionView as UIScrollView).bounces = false
         collectionView.registerCell(cellType: DayWebtoonCollectionViewCell.self)
         collectionView.registerCell(cellType: DayWebtoonHorizontalListCell.self)
+        collectionView.registerSupplementaryView(viewType: WebtoonListHeaderView.self)
+        collectionView.registerSupplementaryView(
+            viewType: WebtoonListFooterView.self,
+            forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter
+        )
         collectionView.contentInset = UIEdgeInsets(top: 300, left: 0, bottom: 0, right: 0)
     }
 }
@@ -135,6 +140,25 @@ extension DayWebtoonListViewController: UICollectionViewDelegate {
                 }
             }
         )
+        
+        dataSource.supplementaryViewProvider = { collectionView, kind, indexPath in
+            guard indexPath.item == 0 else { return nil }
+            switch kind {
+            case UICollectionView.elementKindSectionHeader:
+                let headerView: WebtoonListHeaderView = collectionView.dequeueSupplementaryView(indexPath: indexPath)
+                return headerView
+                
+            case UICollectionView.elementKindSectionFooter:
+                let footerView: WebtoonListFooterView = collectionView.dequeueSupplementaryView(
+                    ofKind: UICollectionView.elementKindSectionFooter,
+                    indexPath: indexPath
+                )
+                return footerView
+                
+            default:
+                return nil
+            }
+        }
     }
     
     func applyDataSource(_ cellViewModels: [WebtoonImageCellViewModel]) {
@@ -246,7 +270,7 @@ private extension DayWebtoonListViewController {
             heightDimension: .fractionalHeight(1.0)
         )
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        item.contentInsets = NSDirectionalEdgeInsets(top: 5, leading: 0, bottom: 5, trailing: 5)
+        item.contentInsets = NSDirectionalEdgeInsets(top: 5, leading: 5, bottom: 5, trailing: 5)
         let groupSize = NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(0.25),
             heightDimension: .absolute(170)
@@ -255,7 +279,21 @@ private extension DayWebtoonListViewController {
         let section = NSCollectionLayoutSection(group: group)
         section.interGroupSpacing = 10
         section.orthogonalScrollingBehavior = .continuousGroupLeadingBoundary
-        section.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 16, bottom: 10, trailing: 16)
+        section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 16, bottom: 10, trailing: 16)
+        
+        let headerItem = NSCollectionLayoutBoundarySupplementaryItem(
+            layoutSize: .init(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(50)),
+            elementKind: UICollectionView.elementKindSectionHeader,
+            alignment: .top
+        )
+        
+        let footerItem = NSCollectionLayoutBoundarySupplementaryItem(
+            layoutSize: .init(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(10)),
+            elementKind: UICollectionView.elementKindSectionFooter,
+            alignment: .bottom
+        )
+        
+        section.boundarySupplementaryItems = [headerItem, footerItem]
         return section
     }
 }
