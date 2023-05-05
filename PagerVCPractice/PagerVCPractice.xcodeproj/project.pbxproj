@@ -1,0 +1,749 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		C141CC4029EA585F00E83ADE /* WebtoonAdView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C141CC3F29EA585F00E83ADE /* WebtoonAdView.swift */; };
+		C141CC4229EA5C3300E83ADE /* WebtoonAdViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C141CC4129EA5C3300E83ADE /* WebtoonAdViewModel.swift */; };
+		C1472D7329C32A5E00F08266 /* Gesture+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1472D7229C32A5E00F08266 /* Gesture+Extension.swift */; };
+		C148F17E2A04E5D700F317D2 /* DayWebtoonHorizontalListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C148F17D2A04E5D700F317D2 /* DayWebtoonHorizontalListCell.swift */; };
+		C148F1802A04FFF100F317D2 /* WebtoonListHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C148F17F2A04FFF100F317D2 /* WebtoonListHeaderView.swift */; };
+		C148F1822A0501E700F317D2 /* WebtoonListFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C148F1812A0501E700F317D2 /* WebtoonListFooterView.swift */; };
+		C148F1872A05130F00F317D2 /* OnlyPortraitTabbarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C148F1862A05130F00F317D2 /* OnlyPortraitTabbarController.swift */; };
+		C162582C29F6B8A20096A253 /* BasePaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C162582B29F6B8A20096A253 /* BasePaddingLabel.swift */; };
+		C1764FB929CEC25F006E557E /* Parent+Child.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1764FB829CEC25F006E557E /* Parent+Child.swift */; };
+		C183325B29FCCFAC003764A9 /* WebtoonDayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C183325A29FCCFAC003764A9 /* WebtoonDayView.swift */; };
+		C183325D29FCD173003764A9 /* WebtoonDayCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C183325C29FCD173003764A9 /* WebtoonDayCollectionViewCell.swift */; };
+		C183325F29FCD3EC003764A9 /* WebtoonDayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C183325E29FCD3EC003764A9 /* WebtoonDayViewModel.swift */; };
+		C183326129FCD47F003764A9 /* WebtoonDayCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C183326029FCD47F003764A9 /* WebtoonDayCellViewModel.swift */; };
+		C1A668AB2984C0D90079F7E4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A668AA2984C0D90079F7E4 /* AppDelegate.swift */; };
+		C1A668B42984C0DA0079F7E4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C1A668B32984C0DA0079F7E4 /* Assets.xcassets */; };
+		C1A668B72984C0DA0079F7E4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C1A668B52984C0DA0079F7E4 /* LaunchScreen.storyboard */; };
+		C1A668C22984C0DA0079F7E4 /* PagerVCPracticeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A668C12984C0DA0079F7E4 /* PagerVCPracticeTests.swift */; };
+		C1A668DB2984C6C90079F7E4 /* MainPagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A668DA2984C6C90079F7E4 /* MainPagerViewController.swift */; };
+		C1ADD63B29BDA7C1008A05A2 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = C1ADD63A29BDA7C1008A05A2 /* Kingfisher */; };
+		C1ADD63E29BDA875008A05A2 /* UnsplashPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1ADD63D29BDA875008A05A2 /* UnsplashPhoto.swift */; };
+		C1ADD64129BDAF06008A05A2 /* PagenationUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1ADD64029BDAF06008A05A2 /* PagenationUsecase.swift */; };
+		C1ADD64729BDD2CB008A05A2 /* Array+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1ADD64629BDD2CB008A05A2 /* Array+Extension.swift */; };
+		C1BE4829299A61A90014AF67 /* HttpAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BE4828299A61A90014AF67 /* HttpAPI.swift */; };
+		C1BE482D299A62DE0014AF67 /* Remote.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BE482C299A62DE0014AF67 /* Remote.swift */; };
+		C1BE4830299A6F800014AF67 /* ImageLoaderUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BE482F299A6F800014AF67 /* ImageLoaderUsecase.swift */; };
+		C1BE4833299A708B0014AF67 /* ImageLoaderRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BE4832299A708B0014AF67 /* ImageLoaderRepository.swift */; };
+		C1BE4838299A73300014AF67 /* MainPagerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BE4837299A73300014AF67 /* MainPagerViewModel.swift */; };
+		C1D2F70E29A0D5670075F95D /* Combine+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1D2F70D29A0D5670075F95D /* Combine+Extension.swift */; };
+		C1EFC4D229B47A1C00F02F79 /* DayWebtoonListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1EFC4D129B47A1C00F02F79 /* DayWebtoonListViewController.swift */; };
+		C1EFC4D429B47BA900F02F79 /* WebtoonImageCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1EFC4D329B47BA900F02F79 /* WebtoonImageCellViewModel.swift */; };
+		C1EFC4D629B47DB500F02F79 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1EFC4D529B47DB500F02F79 /* UIView+Extension.swift */; };
+		C1EFC4D929B481F900F02F79 /* UICollectionView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1EFC4D829B481F900F02F79 /* UICollectionView+Extension.swift */; };
+		C1EFC4DC29B4831000F02F79 /* DayWebtoonCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1EFC4DB29B4831000F02F79 /* DayWebtoonCollectionViewCell.swift */; };
+		C1EFC4DE29B48BB400F02F79 /* DayWebtoonListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1EFC4DD29B48BB400F02F79 /* DayWebtoonListViewModel.swift */; };
+		C1FEC7CE29EED971007B8B57 /* WebtoonAdCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FEC7CD29EED971007B8B57 /* WebtoonAdCollectionViewCell.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		C1A668BE2984C0DA0079F7E4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C1A6689F2984C0D90079F7E4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C1A668A62984C0D90079F7E4;
+			remoteInfo = PagerVCPractice;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		C141CC3F29EA585F00E83ADE /* WebtoonAdView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebtoonAdView.swift; sourceTree = "<group>"; };
+		C141CC4129EA5C3300E83ADE /* WebtoonAdViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebtoonAdViewModel.swift; sourceTree = "<group>"; };
+		C1472D7229C32A5E00F08266 /* Gesture+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Gesture+Extension.swift"; sourceTree = "<group>"; };
+		C148F17D2A04E5D700F317D2 /* DayWebtoonHorizontalListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayWebtoonHorizontalListCell.swift; sourceTree = "<group>"; };
+		C148F17F2A04FFF100F317D2 /* WebtoonListHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebtoonListHeaderView.swift; sourceTree = "<group>"; };
+		C148F1812A0501E700F317D2 /* WebtoonListFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebtoonListFooterView.swift; sourceTree = "<group>"; };
+		C148F1862A05130F00F317D2 /* OnlyPortraitTabbarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnlyPortraitTabbarController.swift; sourceTree = "<group>"; };
+		C162582B29F6B8A20096A253 /* BasePaddingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasePaddingLabel.swift; sourceTree = "<group>"; };
+		C1764FB829CEC25F006E557E /* Parent+Child.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Parent+Child.swift"; sourceTree = "<group>"; };
+		C183325A29FCCFAC003764A9 /* WebtoonDayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebtoonDayView.swift; sourceTree = "<group>"; };
+		C183325C29FCD173003764A9 /* WebtoonDayCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebtoonDayCollectionViewCell.swift; sourceTree = "<group>"; };
+		C183325E29FCD3EC003764A9 /* WebtoonDayViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebtoonDayViewModel.swift; sourceTree = "<group>"; };
+		C183326029FCD47F003764A9 /* WebtoonDayCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebtoonDayCellViewModel.swift; sourceTree = "<group>"; };
+		C1A668A72984C0D90079F7E4 /* PagerVCPractice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PagerVCPractice.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C1A668AA2984C0D90079F7E4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		C1A668B32984C0DA0079F7E4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		C1A668B62984C0DA0079F7E4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		C1A668B82984C0DA0079F7E4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C1A668BD2984C0DA0079F7E4 /* PagerVCPracticeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PagerVCPracticeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C1A668C12984C0DA0079F7E4 /* PagerVCPracticeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagerVCPracticeTests.swift; sourceTree = "<group>"; };
+		C1A668DA2984C6C90079F7E4 /* MainPagerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPagerViewController.swift; sourceTree = "<group>"; };
+		C1ADD63D29BDA875008A05A2 /* UnsplashPhoto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnsplashPhoto.swift; sourceTree = "<group>"; };
+		C1ADD64029BDAF06008A05A2 /* PagenationUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagenationUsecase.swift; sourceTree = "<group>"; };
+		C1ADD64629BDD2CB008A05A2 /* Array+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extension.swift"; sourceTree = "<group>"; };
+		C1BE4828299A61A90014AF67 /* HttpAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpAPI.swift; sourceTree = "<group>"; };
+		C1BE482C299A62DE0014AF67 /* Remote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Remote.swift; sourceTree = "<group>"; };
+		C1BE482F299A6F800014AF67 /* ImageLoaderUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoaderUsecase.swift; sourceTree = "<group>"; };
+		C1BE4832299A708B0014AF67 /* ImageLoaderRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoaderRepository.swift; sourceTree = "<group>"; };
+		C1BE4837299A73300014AF67 /* MainPagerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPagerViewModel.swift; sourceTree = "<group>"; };
+		C1D2F70D29A0D5670075F95D /* Combine+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Combine+Extension.swift"; sourceTree = "<group>"; };
+		C1EFC4D129B47A1C00F02F79 /* DayWebtoonListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayWebtoonListViewController.swift; sourceTree = "<group>"; };
+		C1EFC4D329B47BA900F02F79 /* WebtoonImageCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebtoonImageCellViewModel.swift; sourceTree = "<group>"; };
+		C1EFC4D529B47DB500F02F79 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
+		C1EFC4D829B481F900F02F79 /* UICollectionView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Extension.swift"; sourceTree = "<group>"; };
+		C1EFC4DB29B4831000F02F79 /* DayWebtoonCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayWebtoonCollectionViewCell.swift; sourceTree = "<group>"; };
+		C1EFC4DD29B48BB400F02F79 /* DayWebtoonListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayWebtoonListViewModel.swift; sourceTree = "<group>"; };
+		C1FEC7CD29EED971007B8B57 /* WebtoonAdCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebtoonAdCollectionViewCell.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		C1A668A42984C0D90079F7E4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C1ADD63B29BDA7C1008A05A2 /* Kingfisher in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C1A668BA2984C0DA0079F7E4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		C148F1832A0511C100F317D2 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				C148F1862A05130F00F317D2 /* OnlyPortraitTabbarController.swift */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		C1764FB729CEC24E006E557E /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				C1764FB829CEC25F006E557E /* Parent+Child.swift */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		C183325929FCCFA0003764A9 /* WebtoonDay */ = {
+			isa = PBXGroup;
+			children = (
+				C183325A29FCCFAC003764A9 /* WebtoonDayView.swift */,
+				C183325C29FCD173003764A9 /* WebtoonDayCollectionViewCell.swift */,
+				C183326029FCD47F003764A9 /* WebtoonDayCellViewModel.swift */,
+			);
+			path = WebtoonDay;
+			sourceTree = "<group>";
+		};
+		C1A6689E2984C0D90079F7E4 = {
+			isa = PBXGroup;
+			children = (
+				C1A668A92984C0D90079F7E4 /* PagerVCPractice */,
+				C1A668C02984C0DA0079F7E4 /* PagerVCPracticeTests */,
+				C1A668A82984C0D90079F7E4 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		C1A668A82984C0D90079F7E4 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C1A668A72984C0D90079F7E4 /* PagerVCPractice.app */,
+				C1A668BD2984C0DA0079F7E4 /* PagerVCPracticeTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C1A668A92984C0D90079F7E4 /* PagerVCPractice */ = {
+			isa = PBXGroup;
+			children = (
+				C1BE4824299A60BD0014AF67 /* App */,
+				C1BE4836299A73230014AF67 /* ViewModel */,
+				C1BE4831299A6FCD0014AF67 /* View */,
+				C1BE482E299A6E500014AF67 /* Usecase */,
+				C1BE482A299A62950014AF67 /* Repository */,
+				C1D2F70B29A0D5350075F95D /* Common */,
+				C1BE4825299A60CE0014AF67 /* Resource */,
+				C1A668B82984C0DA0079F7E4 /* Info.plist */,
+			);
+			path = PagerVCPractice;
+			sourceTree = "<group>";
+		};
+		C1A668C02984C0DA0079F7E4 /* PagerVCPracticeTests */ = {
+			isa = PBXGroup;
+			children = (
+				C1A668C12984C0DA0079F7E4 /* PagerVCPracticeTests.swift */,
+			);
+			path = PagerVCPracticeTests;
+			sourceTree = "<group>";
+		};
+		C1ADD63C29BDA858008A05A2 /* DataType */ = {
+			isa = PBXGroup;
+			children = (
+				C1ADD63D29BDA875008A05A2 /* UnsplashPhoto.swift */,
+			);
+			path = DataType;
+			sourceTree = "<group>";
+		};
+		C1BE4824299A60BD0014AF67 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				C1A668AA2984C0D90079F7E4 /* AppDelegate.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		C1BE4825299A60CE0014AF67 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				C1A668B32984C0DA0079F7E4 /* Assets.xcassets */,
+				C1A668B52984C0DA0079F7E4 /* LaunchScreen.storyboard */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		C1BE4826299A60E20014AF67 /* MainPager */ = {
+			isa = PBXGroup;
+			children = (
+				C148F1832A0511C100F317D2 /* Base */,
+				C1EFC4D029B479D700F02F79 /* RandomImageList */,
+				C1A668DA2984C6C90079F7E4 /* MainPagerViewController.swift */,
+			);
+			path = MainPager;
+			sourceTree = "<group>";
+		};
+		C1BE482A299A62950014AF67 /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				C1ADD63C29BDA858008A05A2 /* DataType */,
+				C1BE482B299A62A40014AF67 /* Remote */,
+				C1BE4832299A708B0014AF67 /* ImageLoaderRepository.swift */,
+			);
+			path = Repository;
+			sourceTree = "<group>";
+		};
+		C1BE482B299A62A40014AF67 /* Remote */ = {
+			isa = PBXGroup;
+			children = (
+				C1BE4828299A61A90014AF67 /* HttpAPI.swift */,
+				C1BE482C299A62DE0014AF67 /* Remote.swift */,
+			);
+			path = Remote;
+			sourceTree = "<group>";
+		};
+		C1BE482E299A6E500014AF67 /* Usecase */ = {
+			isa = PBXGroup;
+			children = (
+				C1BE482F299A6F800014AF67 /* ImageLoaderUsecase.swift */,
+				C1ADD64029BDAF06008A05A2 /* PagenationUsecase.swift */,
+			);
+			path = Usecase;
+			sourceTree = "<group>";
+		};
+		C1BE4831299A6FCD0014AF67 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C1BE4826299A60E20014AF67 /* MainPager */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		C1BE4836299A73230014AF67 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				C1764FB729CEC24E006E557E /* Base */,
+				C1BE4837299A73300014AF67 /* MainPagerViewModel.swift */,
+				C1EFC4DD29B48BB400F02F79 /* DayWebtoonListViewModel.swift */,
+				C141CC4129EA5C3300E83ADE /* WebtoonAdViewModel.swift */,
+				C183325E29FCD3EC003764A9 /* WebtoonDayViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		C1D2F70B29A0D5350075F95D /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				C1D2F70C29A0D5450075F95D /* Extension */,
+				C162582B29F6B8A20096A253 /* BasePaddingLabel.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		C1D2F70C29A0D5450075F95D /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				C1D2F70D29A0D5670075F95D /* Combine+Extension.swift */,
+				C1EFC4D529B47DB500F02F79 /* UIView+Extension.swift */,
+				C1EFC4D829B481F900F02F79 /* UICollectionView+Extension.swift */,
+				C1ADD64629BDD2CB008A05A2 /* Array+Extension.swift */,
+				C1472D7229C32A5E00F08266 /* Gesture+Extension.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		C1EFC4D029B479D700F02F79 /* RandomImageList */ = {
+			isa = PBXGroup;
+			children = (
+				C183325929FCCFA0003764A9 /* WebtoonDay */,
+				C1FEC7CB29EED789007B8B57 /* WebtoonAd */,
+				C1FEC7CC29EED83C007B8B57 /* WebtoonList */,
+			);
+			path = RandomImageList;
+			sourceTree = "<group>";
+		};
+		C1FEC7CB29EED789007B8B57 /* WebtoonAd */ = {
+			isa = PBXGroup;
+			children = (
+				C141CC3F29EA585F00E83ADE /* WebtoonAdView.swift */,
+				C1FEC7CD29EED971007B8B57 /* WebtoonAdCollectionViewCell.swift */,
+			);
+			path = WebtoonAd;
+			sourceTree = "<group>";
+		};
+		C1FEC7CC29EED83C007B8B57 /* WebtoonList */ = {
+			isa = PBXGroup;
+			children = (
+				C1EFC4D129B47A1C00F02F79 /* DayWebtoonListViewController.swift */,
+				C1EFC4D329B47BA900F02F79 /* WebtoonImageCellViewModel.swift */,
+				C1EFC4DB29B4831000F02F79 /* DayWebtoonCollectionViewCell.swift */,
+				C148F17D2A04E5D700F317D2 /* DayWebtoonHorizontalListCell.swift */,
+				C148F17F2A04FFF100F317D2 /* WebtoonListHeaderView.swift */,
+				C148F1812A0501E700F317D2 /* WebtoonListFooterView.swift */,
+			);
+			path = WebtoonList;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		C1A668A62984C0D90079F7E4 /* PagerVCPractice */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C1A668D12984C0DB0079F7E4 /* Build configuration list for PBXNativeTarget "PagerVCPractice" */;
+			buildPhases = (
+				C1A668A32984C0D90079F7E4 /* Sources */,
+				C1A668A42984C0D90079F7E4 /* Frameworks */,
+				C1A668A52984C0D90079F7E4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PagerVCPractice;
+			packageProductDependencies = (
+				C1ADD63A29BDA7C1008A05A2 /* Kingfisher */,
+			);
+			productName = PagerVCPractice;
+			productReference = C1A668A72984C0D90079F7E4 /* PagerVCPractice.app */;
+			productType = "com.apple.product-type.application";
+		};
+		C1A668BC2984C0DA0079F7E4 /* PagerVCPracticeTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C1A668D42984C0DB0079F7E4 /* Build configuration list for PBXNativeTarget "PagerVCPracticeTests" */;
+			buildPhases = (
+				C1A668B92984C0DA0079F7E4 /* Sources */,
+				C1A668BA2984C0DA0079F7E4 /* Frameworks */,
+				C1A668BB2984C0DA0079F7E4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C1A668BF2984C0DA0079F7E4 /* PBXTargetDependency */,
+			);
+			name = PagerVCPracticeTests;
+			productName = PagerVCPracticeTests;
+			productReference = C1A668BD2984C0DA0079F7E4 /* PagerVCPracticeTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		C1A6689F2984C0D90079F7E4 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1410;
+				LastUpgradeCheck = 1410;
+				TargetAttributes = {
+					C1A668A62984C0D90079F7E4 = {
+						CreatedOnToolsVersion = 14.1;
+					};
+					C1A668BC2984C0DA0079F7E4 = {
+						CreatedOnToolsVersion = 14.1;
+						TestTargetID = C1A668A62984C0D90079F7E4;
+					};
+				};
+			};
+			buildConfigurationList = C1A668A22984C0D90079F7E4 /* Build configuration list for PBXProject "PagerVCPractice" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = C1A6689E2984C0D90079F7E4;
+			packageReferences = (
+				C1ADD63929BDA7C1008A05A2 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+			);
+			productRefGroup = C1A668A82984C0D90079F7E4 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				C1A668A62984C0D90079F7E4 /* PagerVCPractice */,
+				C1A668BC2984C0DA0079F7E4 /* PagerVCPracticeTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		C1A668A52984C0D90079F7E4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C1A668B72984C0DA0079F7E4 /* LaunchScreen.storyboard in Resources */,
+				C1A668B42984C0DA0079F7E4 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C1A668BB2984C0DA0079F7E4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		C1A668A32984C0D90079F7E4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C183326129FCD47F003764A9 /* WebtoonDayCellViewModel.swift in Sources */,
+				C1EFC4D929B481F900F02F79 /* UICollectionView+Extension.swift in Sources */,
+				C1ADD64129BDAF06008A05A2 /* PagenationUsecase.swift in Sources */,
+				C1FEC7CE29EED971007B8B57 /* WebtoonAdCollectionViewCell.swift in Sources */,
+				C1ADD63E29BDA875008A05A2 /* UnsplashPhoto.swift in Sources */,
+				C183325D29FCD173003764A9 /* WebtoonDayCollectionViewCell.swift in Sources */,
+				C1472D7329C32A5E00F08266 /* Gesture+Extension.swift in Sources */,
+				C148F17E2A04E5D700F317D2 /* DayWebtoonHorizontalListCell.swift in Sources */,
+				C141CC4229EA5C3300E83ADE /* WebtoonAdViewModel.swift in Sources */,
+				C183325B29FCCFAC003764A9 /* WebtoonDayView.swift in Sources */,
+				C1EFC4DE29B48BB400F02F79 /* DayWebtoonListViewModel.swift in Sources */,
+				C1EFC4DC29B4831000F02F79 /* DayWebtoonCollectionViewCell.swift in Sources */,
+				C1EFC4D629B47DB500F02F79 /* UIView+Extension.swift in Sources */,
+				C1BE4833299A708B0014AF67 /* ImageLoaderRepository.swift in Sources */,
+				C148F1822A0501E700F317D2 /* WebtoonListFooterView.swift in Sources */,
+				C1BE4829299A61A90014AF67 /* HttpAPI.swift in Sources */,
+				C1EFC4D229B47A1C00F02F79 /* DayWebtoonListViewController.swift in Sources */,
+				C183325F29FCD3EC003764A9 /* WebtoonDayViewModel.swift in Sources */,
+				C1ADD64729BDD2CB008A05A2 /* Array+Extension.swift in Sources */,
+				C148F1872A05130F00F317D2 /* OnlyPortraitTabbarController.swift in Sources */,
+				C1764FB929CEC25F006E557E /* Parent+Child.swift in Sources */,
+				C141CC4029EA585F00E83ADE /* WebtoonAdView.swift in Sources */,
+				C1EFC4D429B47BA900F02F79 /* WebtoonImageCellViewModel.swift in Sources */,
+				C1BE482D299A62DE0014AF67 /* Remote.swift in Sources */,
+				C1A668AB2984C0D90079F7E4 /* AppDelegate.swift in Sources */,
+				C1BE4830299A6F800014AF67 /* ImageLoaderUsecase.swift in Sources */,
+				C1BE4838299A73300014AF67 /* MainPagerViewModel.swift in Sources */,
+				C162582C29F6B8A20096A253 /* BasePaddingLabel.swift in Sources */,
+				C1A668DB2984C6C90079F7E4 /* MainPagerViewController.swift in Sources */,
+				C1D2F70E29A0D5670075F95D /* Combine+Extension.swift in Sources */,
+				C148F1802A04FFF100F317D2 /* WebtoonListHeaderView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C1A668B92984C0DA0079F7E4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C1A668C22984C0DA0079F7E4 /* PagerVCPracticeTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		C1A668BF2984C0DA0079F7E4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C1A668A62984C0D90079F7E4 /* PagerVCPractice */;
+			targetProxy = C1A668BE2984C0DA0079F7E4 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		C1A668B52984C0DA0079F7E4 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C1A668B62984C0DA0079F7E4 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		C1A668CF2984C0DB0079F7E4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		C1A668D02984C0DB0079F7E4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		C1A668D22984C0DB0079F7E4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = C7GUZQPQHZ;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = PagerVCPractice/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = namkibeom.PagerVCPractice;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		C1A668D32984C0DB0079F7E4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = C7GUZQPQHZ;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = PagerVCPractice/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = namkibeom.PagerVCPractice;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		C1A668D52984C0DB0079F7E4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 2ZV2S86XXA;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = namkibeom.PagerVCPracticeTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PagerVCPractice.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/PagerVCPractice";
+			};
+			name = Debug;
+		};
+		C1A668D62984C0DB0079F7E4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 2ZV2S86XXA;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = namkibeom.PagerVCPracticeTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PagerVCPractice.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/PagerVCPractice";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C1A668A22984C0D90079F7E4 /* Build configuration list for PBXProject "PagerVCPractice" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C1A668CF2984C0DB0079F7E4 /* Debug */,
+				C1A668D02984C0DB0079F7E4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C1A668D12984C0DB0079F7E4 /* Build configuration list for PBXNativeTarget "PagerVCPractice" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C1A668D22984C0DB0079F7E4 /* Debug */,
+				C1A668D32984C0DB0079F7E4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C1A668D42984C0DB0079F7E4 /* Build configuration list for PBXNativeTarget "PagerVCPracticeTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C1A668D52984C0DB0079F7E4 /* Debug */,
+				C1A668D62984C0DB0079F7E4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		C1ADD63929BDA7C1008A05A2 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		C1ADD63A29BDA7C1008A05A2 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C1ADD63929BDA7C1008A05A2 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = C1A6689F2984C0D90079F7E4 /* Project object */;
+}
