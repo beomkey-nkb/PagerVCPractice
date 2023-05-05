@@ -18,6 +18,7 @@ final class WebtoonAdView: UIView {
     private var currentIndexLabel = BasePaddingLabel(padding: .init(top: 3.5, left: 7, bottom: 3.5, right: 7))
     private var collectionView: UICollectionView! = nil
 
+    private var initPhotoSubject = PassthroughSubject<String?, Never>()
     private let adMaxCount: Int = 100
     private var photos = [UnsplashPhoto]()
     private var currentIndex: Int = 60
@@ -53,16 +54,14 @@ final class WebtoonAdView: UIView {
     }
     
     private func bind() {
-        collectionView
-            .publisher(for: \.bounds)
-            .filter { $0.height != 0 }
-            .map { _ in }
+        initPhotoSubject
+            .first()
             .receive(on: DispatchQueue.main)
-            .sink { [weak self] _ in
+            .compactMap { $0 }
+            .sink { [weak self] urlString in
                 guard let self = self else { return }
                 let indexPath = IndexPath(item: 60, section: 0)
-                guard self.photos.isEmpty == false,
-                      let url = URL(string: self.photos[0].urls.regular)
+                guard let url = URL(string: urlString)
                 else { return }
                 
                 self.setupImageGradient(self.frontImageView)
@@ -78,10 +77,14 @@ final class WebtoonAdView: UIView {
         
         viewModel
             .$dataSource
+            .filter { $0.isEmpty == false }
             .receive(on: DispatchQueue.main)
             .sink { [weak self] dataSource in
                 self?.photos = dataSource
                 self?.collectionView.reloadData()
+                self?.collectionView.performBatchUpdates(nil, completion: { loaded in
+                    self?.initPhotoSubject.send(dataSource[0].urls.regular)
+                })
             }
             .store(in: &cancellables)
         
@@ -95,6 +98,22 @@ final class WebtoonAdView: UIView {
                 self.handleImageAlpha(offsetX)
             }
             .store(in: &cancellables)
+    }
+    
+    private func setupInitPhoto() {
+        let indexPath = IndexPath(item: 60, section: 0)
+        guard let url = URL(string: self.photos[0].urls.regular)
+        else { return }
+        
+        self.layoutIfNeeded()
+        self.setupImageGradient(self.frontImageView)
+        self.setupImageGradient(self.backgroundImageView)
+        self.frontImageView.kf.setImage(with: url)
+        self.collectionView.scrollToItem(
+            at: indexPath,
+            at: .centeredHorizontally,
+            animated: false
+        )
     }
 }
 
@@ -146,6 +165,12 @@ private extension WebtoonAdView {
     }
     
     func handleImageAnimation(_ nextIndex: Int, imageAlpha: CGFloat) {
+        if abs(currentIndex - nextIndex) > 1 {
+            currentIndex += 1
+            exchangeImageViewPosition()
+            clearImageAlpha()
+        }
+        
         let urlString = photos[nextIndex % 20].urls.regular
         let url = URL(string: urlString)
         self.backgroundImageView.kf.setImage(with: url)
