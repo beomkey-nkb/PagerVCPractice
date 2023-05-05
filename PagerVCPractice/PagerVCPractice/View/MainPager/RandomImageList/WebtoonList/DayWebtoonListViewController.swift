@@ -10,6 +10,7 @@ import UIKit
 import Combine
 
 enum DayWebtoonListSection: Int {
+    case horizontalList
     case dayWebtoonList
 }
 
@@ -43,6 +44,7 @@ final class DayWebtoonListViewController: UIViewController {
         viewModel
             .$dataSource
             .receive(on: DispatchQueue.main)
+            .drop(while: { $0.isEmpty })
             .sink { [weak self] cellViewModel in
                 self?.applyDataSource(cellViewModel)
             }
@@ -88,6 +90,23 @@ extension DayWebtoonListViewController {
     func setupStyling() {
         view.backgroundColor = .white
     }
+    
+    func setupCollectionView() {
+        collectionView = UICollectionView(
+            frame: .zero,
+            collectionViewLayout: createCollectionViewCompositionalLayout()
+        )
+        collectionView.backgroundColor = .clear
+        collectionView.showsHorizontalScrollIndicator = false
+        collectionView.isScrollEnabled = true
+        collectionView.showsVerticalScrollIndicator = false
+        collectionView.delegate = self
+        
+        (collectionView as UIScrollView).bounces = false
+        collectionView.registerCell(cellType: DayWebtoonCollectionViewCell.self)
+        collectionView.registerCell(cellType: DayWebtoonHorizontalListCell.self)
+        collectionView.contentInset = UIEdgeInsets(top: 300, left: 0, bottom: 0, right: 0)
+    }
 }
 
 // MARK: CollectionView dataSource
@@ -98,20 +117,41 @@ extension DayWebtoonListViewController: UICollectionViewDelegate {
         dataSource = UICollectionViewDiffableDataSource<DayWebtoonListSection, WebtoonImageCellViewModel>.init(
             collectionView: collectionView,
             cellProvider: { collectionView, indexPath, itemIdentifier in
-                let cell: DayWebtoonCollectionViewCell = collectionView.dequeueCell(indexPath: indexPath)
-                cell.configure(itemIdentifier)
-                return cell
+                let section = DayWebtoonListSection(rawValue: indexPath.section)
+                
+                switch section {
+                case .horizontalList:
+                    let cell: DayWebtoonHorizontalListCell = collectionView.dequeueCell(indexPath: indexPath)
+                    cell.configure(itemIdentifier, index: indexPath.item)
+                    return cell
+                    
+                case .dayWebtoonList:
+                    let cell: DayWebtoonCollectionViewCell = collectionView.dequeueCell(indexPath: indexPath)
+                    cell.configure(itemIdentifier)
+                    return cell
+                    
+                default:
+                    return UICollectionViewCell()
+                }
             }
         )
     }
     
     func applyDataSource(_ cellViewModels: [WebtoonImageCellViewModel]) {
         var snapshot = NSDiffableDataSourceSnapshot<DayWebtoonListSection, WebtoonImageCellViewModel>()
-        snapshot.appendSections([.dayWebtoonList])
-        snapshot.appendItems(cellViewModels, toSection: .dayWebtoonList)
+        let horizontalList = cellViewModels[0..<10].map { $0 }
+        let verticalList = cellViewModels[10..<28].map { $0 }
+        
+        snapshot.appendSections([ .horizontalList, .dayWebtoonList])
+        snapshot.appendItems(horizontalList, toSection: .horizontalList)
+        snapshot.appendItems(verticalList, toSection: .dayWebtoonList)
         dataSource.apply(snapshot, animatingDifferences: false)
     }
-    
+}
+
+// MARK: UIScrollViewDelegate
+
+extension DayWebtoonListViewController {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         guard scrollView.isDragging || scrollView.isDecelerating else { return }
         viewModel.deliverCollectionViewOffsetY(scrollView.contentOffset.y)
@@ -155,22 +195,6 @@ extension DayWebtoonListViewController: UICollectionViewDelegate {
 
 private extension DayWebtoonListViewController {
     
-    func setupCollectionView() {
-        collectionView = UICollectionView(
-            frame: .zero,
-            collectionViewLayout: createCollectionViewCompositionalLayout()
-        )
-        collectionView.backgroundColor = .clear
-        collectionView.showsHorizontalScrollIndicator = false
-        collectionView.isScrollEnabled = true
-        collectionView.showsVerticalScrollIndicator = false
-        collectionView.delegate = self
-        
-        (collectionView as UIScrollView).bounces = false
-        collectionView.registerCell(cellType: DayWebtoonCollectionViewCell.self)
-        collectionView.contentInset = UIEdgeInsets(top: 300, left: 0, bottom: 0, right: 0)
-    }
-    
     func createCollectionViewCompositionalLayout() -> UICollectionViewLayout {
         let config = UICollectionViewCompositionalLayoutConfiguration()
         config.interSectionSpacing = 0
@@ -186,6 +210,8 @@ private extension DayWebtoonListViewController {
     
     func createCollectionLayout(with section: DayWebtoonListSection) -> NSCollectionLayoutSection {
         switch section {
+        case .horizontalList:
+            return horizontalWebtoonListLayout()
         case .dayWebtoonList:
             return createDayWebtoonListLayout()
         }
@@ -222,7 +248,7 @@ private extension DayWebtoonListViewController {
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         item.contentInsets = NSDirectionalEdgeInsets(top: 5, leading: 0, bottom: 5, trailing: 5)
         let groupSize = NSCollectionLayoutSize(
-            widthDimension: .fractionalWidth(0.35),
+            widthDimension: .fractionalWidth(0.25),
             heightDimension: .absolute(170)
         )
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])

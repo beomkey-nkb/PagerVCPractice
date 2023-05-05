@@ -49,7 +49,7 @@ final class DayWebtoonListViewModel: VMChild<MainPagerParentAction, DayWebtoonLi
     
     private func observeTrigger() {
         imageLoaderUsecase
-            .loadPhotos(page: currentPage, perPage: 18)
+            .loadPhotos(page: currentPage, perPage: 28)
             .map { $0.map { $0.toWebtoonImageCellViewModel() } }
             .assertNoFailure()
             .assign(to: \.dataSource, on: self)
