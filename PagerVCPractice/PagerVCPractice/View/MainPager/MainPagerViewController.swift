@@ -11,6 +11,7 @@ import Combine
 
 final class MainPagerViewController: UIViewController {
     private let viewModel = MainPagerViewModel()
+    
     private lazy var pagedViewControllers: [UIViewController] = {
         return (0..<7).map { value in
             let listViewModel = DayWebtoonListViewModel(currentPage: value + 1)

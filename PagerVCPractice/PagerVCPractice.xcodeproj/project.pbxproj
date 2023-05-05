@@ -13,6 +13,7 @@
 		C148F17E2A04E5D700F317D2 /* DayWebtoonHorizontalListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C148F17D2A04E5D700F317D2 /* DayWebtoonHorizontalListCell.swift */; };
 		C148F1802A04FFF100F317D2 /* WebtoonListHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C148F17F2A04FFF100F317D2 /* WebtoonListHeaderView.swift */; };
 		C148F1822A0501E700F317D2 /* WebtoonListFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C148F1812A0501E700F317D2 /* WebtoonListFooterView.swift */; };
+		C148F1872A05130F00F317D2 /* OnlyPortraitTabbarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C148F1862A05130F00F317D2 /* OnlyPortraitTabbarController.swift */; };
 		C162582C29F6B8A20096A253 /* BasePaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C162582B29F6B8A20096A253 /* BasePaddingLabel.swift */; };
 		C1764FB929CEC25F006E557E /* Parent+Child.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1764FB829CEC25F006E557E /* Parent+Child.swift */; };
 		C183325B29FCCFAC003764A9 /* WebtoonDayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C183325A29FCCFAC003764A9 /* WebtoonDayView.swift */; };
@@ -60,6 +61,7 @@
 		C148F17D2A04E5D700F317D2 /* DayWebtoonHorizontalListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayWebtoonHorizontalListCell.swift; sourceTree = "<group>"; };
 		C148F17F2A04FFF100F317D2 /* WebtoonListHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebtoonListHeaderView.swift; sourceTree = "<group>"; };
 		C148F1812A0501E700F317D2 /* WebtoonListFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebtoonListFooterView.swift; sourceTree = "<group>"; };
+		C148F1862A05130F00F317D2 /* OnlyPortraitTabbarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnlyPortraitTabbarController.swift; sourceTree = "<group>"; };
 		C162582B29F6B8A20096A253 /* BasePaddingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasePaddingLabel.swift; sourceTree = "<group>"; };
 		C1764FB829CEC25F006E557E /* Parent+Child.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Parent+Child.swift"; sourceTree = "<group>"; };
 		C183325A29FCCFAC003764A9 /* WebtoonDayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebtoonDayView.swift; sourceTree = "<group>"; };
@@ -111,6 +113,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C148F1832A0511C100F317D2 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				C148F1862A05130F00F317D2 /* OnlyPortraitTabbarController.swift */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
 		C1764FB729CEC24E006E557E /* Base */ = {
 			isa = PBXGroup;
 			children = (
@@ -198,6 +208,7 @@
 		C1BE4826299A60E20014AF67 /* MainPager */ = {
 			isa = PBXGroup;
 			children = (
+				C148F1832A0511C100F317D2 /* Base */,
 				C1EFC4D029B479D700F02F79 /* RandomImageList */,
 				C1A668DA2984C6C90079F7E4 /* MainPagerViewController.swift */,
 			);
@@ -430,6 +441,7 @@
 				C1EFC4D229B47A1C00F02F79 /* DayWebtoonListViewController.swift in Sources */,
 				C183325F29FCD3EC003764A9 /* WebtoonDayViewModel.swift in Sources */,
 				C1ADD64729BDD2CB008A05A2 /* Array+Extension.swift in Sources */,
+				C148F1872A05130F00F317D2 /* OnlyPortraitTabbarController.swift in Sources */,
 				C1764FB929CEC25F006E557E /* Parent+Child.swift in Sources */,
 				C141CC4029EA585F00E83ADE /* WebtoonAdView.swift in Sources */,
 				C1EFC4D429B47BA900F02F79 /* WebtoonImageCellViewModel.swift in Sources */,

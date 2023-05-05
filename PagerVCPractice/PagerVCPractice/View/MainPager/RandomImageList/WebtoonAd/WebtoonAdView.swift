@@ -26,14 +26,16 @@ final class WebtoonAdView: UIView {
     enum CollectionViewMetric {
         static var itemSpacing: CGFloat = 10
         
+        static var deviceWidth: CGFloat {
+            return min(UIScreen.main.bounds.width, UIScreen.main.bounds.height)
+        }
+        
         static var cellWidth: CGFloat {
-            return UIScreen.main.bounds.width - 56
+            return CollectionViewMetric.deviceWidth - 56
         }
         
         static var contentInset: UIEdgeInsets {
-            let cellWidth = CollectionViewMetric.cellWidth
-            let insetX = (UIScreen.main.bounds.width - cellWidth) / 2.0
-            return .init(top: 0, left: insetX, bottom: 0, right: insetX)
+            return .init(top: 0, left: 28, bottom: 0, right: 28)
         }
     }
     
@@ -55,8 +57,7 @@ final class WebtoonAdView: UIView {
             .publisher(for: \.bounds)
             .filter { $0.height != 0 }
             .map { _ in }
-            .delay(for: 0.5, scheduler: DispatchQueue.main)
-            .first()
+            .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in
                 guard let self = self else { return }
                 let indexPath = IndexPath(item: 60, section: 0)

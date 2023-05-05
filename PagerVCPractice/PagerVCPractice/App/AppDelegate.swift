@@ -15,7 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         let nav = UINavigationController(rootViewController: MainPagerViewController())
         nav.tabBarItem.tag = 0
-        let tabbarController = UITabBarController()
+        let tabbarController = OnlyPortraitTabbarController()
         tabbarController.tabBar.tintColor = .black
         if #available(iOS 15.0, *) {
             tabbarController.tabBar.scrollEdgeAppearance = tabbarController.tabBar.standardAppearance
